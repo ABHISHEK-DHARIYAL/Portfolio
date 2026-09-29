@@ -1,0 +1,365 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #7c3aed44 transparent;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #7c3aed55;
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid #7c3aed;
+  outline-offset: 3px;
+}
+
+/* ============================================================================
+ * LIGHT THEME
+ * ----------------------------------------------------------------------------
+ * How this works: every component in the site was already written with
+ * Tailwind's dark-first utilities (bg-base, text-white, text-white/60,
+ * border-white/10, bg-white/[0.03], etc.) baked directly into their
+ * className strings — there's no per-component "light" variant to swap in.
+ *
+ * Rather than rewrite every className in every component (30+ files) to
+ * use theme-aware tokens, this block does the same job with plain CSS:
+ * it overrides the exact compiled output of every one of those utility
+ * classes, but ONLY when the page has <html data-theme="light">. When
+ * data-theme is "dark" (or unset), none of this applies and the site
+ * looks exactly as it always did.
+ *
+ * ThemeProvider.tsx sets that data-theme attribute; the toggle button
+ * lives in Navbar.tsx.
+ *
+ * Selector escaping note: Tailwind class names like `text-white/60` and
+ * `bg-white/[0.03]` contain characters (/, [, ], .) that aren't valid
+ * unescaped in a CSS selector, so they're backslash-escaped below
+ * (`.text-white\/60`, `.bg-white\/\[0\.03\]`) — this is standard CSS,
+ * not a typo.
+ *
+ * Floating overlay chrome — the command palette, cookie consent panel,
+ * terminal, AI assistant panel, project modal, easter-egg toast, and the
+ * admin message modal — carry the `.theme-lock-dark` class. They keep their
+ * dark surface in dark mode and turn into white cards in light mode (see
+ * "FLOATING PANELS" at the bottom of this file). The hero's 3D scene
+ * (HeroScene.tsx) derives its colors from the current theme as well.
+ * ==========================================================================*/
+
+[data-theme="light"] {
+  color-scheme: light;
+}
+
+/* Page background */
+[data-theme="light"] .bg-base {
+  background-color: #fcfcff;
+}
+[data-theme="light"] .bg-base\/80 {
+  background-color: rgb(252 252 255 / 0.82);
+}
+[data-theme="light"] .bg-base\/95 {
+  background-color: rgb(252 252 255 / 0.96);
+}
+
+/* Primary text color and its opacity steps (text-white/NN) */
+[data-theme="light"] .text-white {
+  color: #0f0d1a;
+}
+[data-theme="light"] .text-white\/30 {
+  color: rgb(20 18 31 / 0.48);
+}
+[data-theme="light"] .text-white\/40 {
+  color: rgb(20 18 31 / 0.58);
+}
+[data-theme="light"] .text-white\/50 {
+  color: rgb(20 18 31 / 0.66);
+}
+[data-theme="light"] .text-white\/60 {
+  color: rgb(20 18 31 / 0.74);
+}
+[data-theme="light"] .text-white\/70 {
+  color: rgb(20 18 31 / 0.80);
+}
+[data-theme="light"] .text-white\/80 {
+  color: rgb(20 18 31 / 0.86);
+}
+[data-theme="light"] .text-white\/90 {
+  color: rgb(20 18 31 / 0.9);
+}
+
+/* Borders (border-white/NN) */
+[data-theme="light"] .border-white\/10 {
+  border-color: rgb(20 18 31 / 0.14);
+}
+[data-theme="light"] .border-white\/15 {
+  border-color: rgb(20 18 31 / 0.16);
+}
+[data-theme="light"] .border-white\/20 {
+  border-color: rgb(20 18 31 / 0.2);
+}
+[data-theme="light"] .border-white\/40 {
+  border-color: rgb(20 18 31 / 0.35);
+}
+
+/* Card / surface fills (bg-white/NN and bg-white/[0.0N]) */
+[data-theme="light"] .bg-white\/5 {
+  background-color: rgb(20 18 31 / 0.04);
+}
+[data-theme="light"] .bg-white\/10 {
+  background-color: rgb(20 18 31 / 0.06);
+}
+[data-theme="light"] .bg-white\/15 {
+  background-color: rgb(20 18 31 / 0.08);
+}
+[data-theme="light"] .bg-white\/30 {
+  background-color: rgb(20 18 31 / 0.15);
+}
+[data-theme="light"] .bg-white\/50 {
+  background-color: rgb(20 18 31 / 0.25);
+}
+[data-theme="light"] .bg-white\/\[0\.02\] {
+  background-color: rgb(20 18 31 / 0.02);
+}
+[data-theme="light"] .bg-white\/\[0\.03\] {
+  background-color: rgb(20 18 31 / 0.03);
+}
+[data-theme="light"] .bg-white\/\[0\.04\] {
+  background-color: rgb(20 18 31 / 0.04);
+}
+[data-theme="light"] .bg-white\/\[0\.05\] {
+  background-color: rgb(20 18 31 / 0.05);
+}
+[data-theme="light"] .bg-white\/\[0\.06\] {
+  background-color: rgb(20 18 31 / 0.06);
+}
+
+/* Text selection reads fine with the violet accent on a light background,
+   but the foreground color (white) would vanish, so give it a swap too. */
+[data-theme="light"] ::selection {
+  background: #7c3aed33;
+  color: #14121f;
+}
+
+/* ============================================================================
+ * LIGHT THEME — READABILITY & SURFACE POLISH
+ * ----------------------------------------------------------------------------
+ * 1) Cards: on white, a 3%-tint fill is invisible, so GlassCard-style
+ *    surfaces become real white cards with a hairline border + soft shadow.
+ * 2) Gradient buttons/badges: their `text-white` must stay white (the base
+ *    light rules would turn it near-black on violet).
+ * 3) Brand text colors get darker shades so they pass contrast on white.
+ * ==========================================================================*/
+[data-theme="light"] .bg-white\/\[0\.03\] {
+  background-color: #ffffff;
+  box-shadow:
+    0 1px 2px rgb(20 18 31 / 0.05),
+    0 8px 24px -8px rgb(76 29 149 / 0.12);
+}
+[data-theme="light"] .bg-white\/\[0\.03\]:hover {
+  box-shadow:
+    0 2px 4px rgb(20 18 31 / 0.06),
+    0 16px 36px -10px rgb(76 29 149 / 0.22);
+}
+[data-theme="light"] .bg-white\/\[0\.04\],
+[data-theme="light"] .bg-white\/\[0\.05\] {
+  background-color: rgb(124 58 237 / 0.06);
+}
+[data-theme="light"] .bg-black\/40 {
+  background-color: rgb(20 18 31 / 0.06);
+}
+
+/* White text that sits ON a colored fill stays white */
+[data-theme="light"] .bg-gradient-brand.text-white,
+[data-theme="light"] .bg-gradient-brand .text-white,
+[data-theme="light"] .bg-primary.text-white,
+[data-theme="light"] .bg-accent.text-white {
+  color: #ffffff;
+}
+
+/* Brand text: darker shades for contrast on white */
+[data-theme="light"] .text-primary {
+  color: #6d28d9;
+}
+[data-theme="light"] .text-accent {
+  color: #1d4ed8;
+}
+[data-theme="light"] .text-emerald-400 {
+  color: #047857;
+}
+
+/* Soft glow shadows read as muddy smudges on white — tone them down */
+[data-theme="light"] .shadow-glow {
+  box-shadow: 0 8px 24px -6px rgb(124 58 237 / 0.4);
+}
+[data-theme="light"] .hover\:shadow-glow-accent:hover {
+  box-shadow: 0 10px 28px -6px rgb(59 130 246 / 0.45);
+}
+
+/* ============================================================================
+ * LIGHT THEME — FLOATING PANELS & MISSING VARIANTS
+ * ----------------------------------------------------------------------------
+ * The chatbot, terminal, command palette, cookie banner, project modal,
+ * easter-egg toast and admin message modal used to stay dark in both themes.
+ * They now follow the theme: in light mode their hard-coded dark surface
+ * becomes a white card, and because they no longer lock their inner colors,
+ * every text/border/fill inside them uses the normal light rules above.
+ * ==========================================================================*/
+[data-theme="light"] .theme-lock-dark {
+  background-color: rgb(255 255 255 / 0.97);
+  border-color: rgb(20 18 31 / 0.12);
+  box-shadow:
+    0 24px 60px -16px rgb(76 29 149 / 0.28),
+    0 4px 12px rgb(20 18 31 / 0.08);
+  color: #0f0d1a;
+}
+
+/* Dim-scrim behind modals: softer on a light page */
+[data-theme="light"] .bg-black\/70 {
+  background-color: rgb(30 27 50 / 0.35);
+}
+[data-theme="light"] .bg-black\/50 {
+  background-color: rgb(30 27 50 / 0.18);
+}
+
+/* Terminal blinking cursor + toggle knobs (bg-white on light = invisible) */
+[data-theme="light"] .animate-blink.bg-white {
+  background-color: #6d28d9;
+}
+[data-theme="light"] button[role="switch"] > .bg-white {
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgb(20 18 31 / 0.35);
+}
+[data-theme="light"] button[role="switch"].bg-white\/15 {
+  background-color: rgb(20 18 31 / 0.22);
+}
+
+/* Chat bubbles: bot = soft lavender, input = light grey field */
+[data-theme="light"] .theme-lock-dark .bg-white\/\[0\.06\] {
+  background-color: rgb(124 58 237 / 0.08);
+}
+[data-theme="light"] .theme-lock-dark .bg-white\/\[0\.05\] {
+  background-color: rgb(20 18 31 / 0.06);
+}
+
+/* Variant classes the base light rules never covered */
+[data-theme="light"] .hover\:text-white:hover {
+  color: #0f0d1a;
+}
+[data-theme="light"] .hover\:text-white\/60:hover {
+  color: rgb(20 18 31 / 0.74);
+}
+[data-theme="light"] .placeholder\:text-white\/30::placeholder {
+  color: rgb(20 18 31 / 0.45);
+}
+[data-theme="light"] .hover\:bg-white\/5:hover,
+[data-theme="light"] .hover\:bg-white\/\[0\.02\]:hover {
+  background-color: rgb(124 58 237 / 0.06);
+}
+[data-theme="light"] .hover\:bg-white\/10:hover,
+[data-theme="light"] .hover\:bg-white\/\[0\.12\]:hover {
+  background-color: rgb(124 58 237 / 0.11);
+}
+[data-theme="light"] .hover\:bg-white\/40:hover {
+  background-color: rgb(20 18 31 / 0.2);
+}
+[data-theme="light"] .hover\:border-white\/25:hover,
+[data-theme="light"] .hover\:border-white\/40:hover,
+[data-theme="light"] .group:hover .group-hover\:border-white\/20 {
+  border-color: rgb(124 58 237 / 0.5);
+}
+[data-theme="light"] .via-white\/10 {
+  --tw-gradient-via: rgb(20 18 31 / 0.12);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to);
+}
+
+/* Status colors tuned for white: error / success text and tinted fills */
+[data-theme="light"] .text-red-300,
+[data-theme="light"] .text-red-400 {
+  color: #b91c1c;
+}
+[data-theme="light"] .bg-red-400\/10,
+[data-theme="light"] .bg-red-500\/10 {
+  background-color: rgb(239 68 68 / 0.1);
+}
+[data-theme="light"] .border-red-400\/30,
+[data-theme="light"] .border-red-400\/50,
+[data-theme="light"] .border-red-400\/60,
+[data-theme="light"] .border-red-400\/70 {
+  border-color: rgb(220 38 38 / 0.45);
+}
+[data-theme="light"] .bg-emerald-400\/15 {
+  background-color: rgb(16 185 129 / 0.14);
+}
+[data-theme="light"] .border-emerald-400\/30 {
+  border-color: rgb(4 120 87 / 0.4);
+}
+[data-theme="light"] .bg-emerald-950\/80,
+[data-theme="light"] .bg-red-950\/80 {
+  background-color: #ffffff;
+}
+
+/* ============================================================================
+ * ZUI FUN MODE — always-dark immersive stage
+ * ----------------------------------------------------------------------------
+ * ZuiFunMode.tsx is a full-screen "explore" overlay built around a glowing
+ * figure on a near-black canvas — the dark background is the point (glow
+ * effects wash out on white) and it's intentionally the same in both site
+ * themes, unlike the floating panels above that flip to a white card in
+ * light mode. `.zui-stage` re-pins the light-theme color rules that would
+ * otherwise darken its "text-white/*" etc. utility classes to match.
+ * ==========================================================================*/
+[data-theme="light"] .zui-stage.text-white,
+[data-theme="light"] .zui-stage .text-white {
+  color: #ffffff;
+}
+[data-theme="light"] .zui-stage .text-white\/70 {
+  color: rgb(255 255 255 / 0.7);
+}
+[data-theme="light"] .zui-stage .text-white\/60 {
+  color: rgb(255 255 255 / 0.6);
+}
+[data-theme="light"] .zui-stage .text-white\/40 {
+  color: rgb(255 255 255 / 0.4);
+}
+[data-theme="light"] .zui-stage .text-white\/25 {
+  color: rgb(255 255 255 / 0.25);
+}
+[data-theme="light"] .zui-stage .border-white\/15 {
+  border-color: rgb(255 255 255 / 0.15);
+}
+[data-theme="light"] .zui-stage .border-white\/30,
+[data-theme="light"] .zui-stage .hover\:border-white\/40:hover,
+[data-theme="light"] .zui-stage .hover\:border-white\/30:hover {
+  border-color: rgb(255 255 255 / 0.3);
+}
+[data-theme="light"] .zui-stage .bg-white\/5 {
+  background-color: rgb(255 255 255 / 0.05);
+}
+[data-theme="light"] .zui-stage .text-primary {
+  color: #A78BFA;
+}
+[data-theme="light"] .zui-stage .border-primary\/30 {
+  border-color: rgb(124 58 237 / 0.3);
+}
