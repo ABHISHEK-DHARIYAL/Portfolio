@@ -89,7 +89,10 @@ export type CloudinaryUploadResult = {
 /** Uploads a PDF's raw bytes to Cloudinary via a signed, server-side stream upload. */
 export function uploadPdfToCloudinary(
   bytes: Buffer,
-  fileName: string
+  fileName: string,
+  // Resumes live in "resumes"; achievement PDFs go in a sub-folder of the
+  // same place ("resumes/achievements") — same Cloudinary account & storage.
+  folder = "resumes"
 ): Promise<CloudinaryUploadResult> {
   ensureConfigured();
 
@@ -104,7 +107,7 @@ export function uploadPdfToCloudinary(
     const stream = cloudinary.uploader.upload_stream(
       {
         ...RAW_PDF_RESOURCE_OPTIONS,
-        folder: "resumes",
+        folder,
         public_id: explicitPublicId,
         format: "pdf",
       },

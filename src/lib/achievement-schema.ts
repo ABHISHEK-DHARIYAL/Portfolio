@@ -54,6 +54,9 @@ export const achievementSchema = z.object({
       message: "Enter a full URL, including https://",
     }),
   visible: z.boolean().default(true),
+  // Whether the attached PDF (if any) is shown on the public site. The PDF
+  // itself is uploaded separately (see /api/admin/achievements/[id]/pdf).
+  pdfVisible: z.boolean().default(true),
 });
 
 export type AchievementFormValues = z.infer<typeof achievementSchema>;

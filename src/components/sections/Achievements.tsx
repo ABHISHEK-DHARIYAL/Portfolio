@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Award, ExternalLink, FileBadge2 } from "lucide-react";
+import { Award, ExternalLink, FileBadge2, FileText } from "lucide-react";
 import GlassCard from "@/components/ui/GlassCard";
 import Carousel from "@/components/ui/Carousel";
 
@@ -14,6 +14,8 @@ type Achievement = {
   metric: string;
   description: string;
   link: string;
+  /** Only set when the PDF is attached and switched on in the admin. */
+  pdfUrl?: string;
 };
 
 /**
@@ -108,6 +110,19 @@ export default function Achievements() {
                   <span className="rounded-full border border-white/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide text-white/50">
                     {achievement.category}
                   </span>
+                  {achievement.pdfUrl && (
+                    <a
+                      href={achievement.pdfUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      data-cursor="pointer"
+                      className={`flex items-center gap-1 font-mono text-[11px] text-accent hover:underline ${
+                        achievement.link ? "" : "ml-auto"
+                      }`}
+                    >
+                      <FileText className="h-3 w-3" /> View PDF
+                    </a>
+                  )}
                   {achievement.link && (
                     <a
                       href={achievement.link}

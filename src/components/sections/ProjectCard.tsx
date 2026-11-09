@@ -70,7 +70,7 @@ export default function ProjectCard({
 
         <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
           <div className="flex-1">
-            <p className="font-mono text-xs" style={{ color: project.accent }}>
+            <p className="story-accent-text font-mono text-xs">
               0{index + 1}
             </p>
             <h3 className="mt-2 font-display text-2xl font-semibold text-white sm:text-3xl">
@@ -176,7 +176,7 @@ export default function ProjectCard({
             <p className="text-white/70">{project.title}</p>
             <p className="mt-2">
               $ status:{" "}
-              <span style={{ color: project.accent }}>
+              <span className="story-accent-text">
                 {project.liveUrl ? "live" : "in development"}
               </span>
             </p>

@@ -397,49 +397,33 @@ body {
   border-color: rgb(20 18 31 / 0.1);
 }
 
-/* Accent-colored text (story titles, icons, "FIX →"): darken in light mode */
-.story-accent-text {
-  color: var(--accent);
-}
-[data-theme="light"] .story-accent-text {
-  color: color-mix(in srgb, var(--accent) 68%, #000);
-}
-
-/* Dark theme: lift dim text so it is actually legible */
-html:not([data-theme="light"]) .text-white\/25 {
-  color: rgb(255 255 255 / 0.5);
-}
-html:not([data-theme="light"]) .text-white\/30 {
-  color: rgb(255 255 255 / 0.55);
-}
-html:not([data-theme="light"]) .text-white\/40 {
-  color: rgb(255 255 255 / 0.62);
-}
-html:not([data-theme="light"]) .text-white\/50 {
-  color: rgb(255 255 255 / 0.7);
-}
-html:not([data-theme="light"]) .text-white\/55 {
-  color: rgb(255 255 255 / 0.74);
-}
-html:not([data-theme="light"]) .text-white\/60 {
-  color: rgb(255 255 255 / 0.78);
-}
-html:not([data-theme="light"]) .text-white\/65 {
-  color: rgb(255 255 255 / 0.82);
-}
-html:not([data-theme="light"]) .text-white\/70 {
-  color: rgb(255 255 255 / 0.86);
+/* ============================================================================
+ * TEXT COLOR RULE: dark theme = pure white text, light theme = pure black text
+ * Applies to every text-white/NN step, brand-colored text and accent-colored
+ * text (story/project taglines, icons). Text on colored fills (gradient
+ * buttons, accent tabs) stays white in both themes. The always-dark Zui stage
+ * keeps white text.
+ * ==========================================================================*/
+html:not([data-theme="light"]) :is(.text-white\/25,.text-white\/30,.text-white\/40,.text-white\/50,.text-white\/55,.text-white\/60,.text-white\/65,.text-white\/70,.text-white\/80,.text-white\/90,.text-primary,.text-accent,.story-accent-text,.hover\:text-white\/60:hover,.group:hover .group-hover\:text-white\/80) {
+  color: #ffffff;
 }
 html:not([data-theme="light"]) .placeholder\:text-white\/30::placeholder {
-  color: rgb(255 255 255 / 0.5);
+  color: rgb(255 255 255 / 0.6);
 }
-html:not([data-theme="light"]) .text-primary {
-  color: #a78bfa;
+
+[data-theme="light"] :is(.text-white,.text-white\/25,.text-white\/30,.text-white\/40,.text-white\/50,.text-white\/55,.text-white\/60,.text-white\/65,.text-white\/70,.text-white\/80,.text-white\/90,.text-primary,.text-accent,.story-accent-text,.hover\:text-white:hover,.hover\:text-white\/60:hover,.group:hover .group-hover\:text-white\/80) {
+  color: #000000;
 }
-html:not([data-theme="light"]) .text-accent {
-  color: #60a5fa;
+[data-theme="light"] .placeholder\:text-white\/30::placeholder {
+  color: rgb(0 0 0 / 0.55);
 }
-/* keep brand-colored text on gradient/solid fills white */
-html:not([data-theme="light"]) .bg-gradient-brand .text-primary {
-  color: #fff;
+[data-theme="light"] body {
+  color: #000000;
+}
+
+/* Text sitting on colored fills stays white */
+[data-theme="light"] :is(.bg-gradient-brand, .bg-primary, .bg-accent).text-white,
+[data-theme="light"] :is(.bg-gradient-brand, .bg-primary, .bg-accent) .text-white,
+[data-theme="light"] .zui-stage :is(.text-white,.text-white\/25,.text-white\/40,.text-white\/60,.text-white\/70,.text-primary) {
+  color: #ffffff;
 }

@@ -39,7 +39,7 @@ export default function ProjectModal({
           >
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="font-mono text-xs" style={{ color: project.accent }}>
+                <p className="story-accent-text font-mono text-xs">
                   {project.tagline}
                 </p>
                 <h3 className="mt-1 font-display text-2xl font-semibold text-white sm:text-3xl">
@@ -65,7 +65,7 @@ export default function ProjectModal({
               <div className="mt-6 grid gap-2 sm:grid-cols-2">
                 {project.highlights.map((h) => (
                   <div key={h} className="flex items-center gap-2 rounded-xl border border-white/10 px-3 py-2">
-                    <Gauge className="h-3.5 w-3.5 shrink-0" style={{ color: project.accent }} />
+                    <Gauge className="story-accent-text h-3.5 w-3.5 shrink-0" />
                     <span className="font-body text-xs text-white/70">{h}</span>
                   </div>
                 ))}

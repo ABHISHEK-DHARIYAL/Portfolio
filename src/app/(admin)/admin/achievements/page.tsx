@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Plus, Pencil, Trash2, Eye, EyeOff, Award, Loader2 } from "lucide-react";
+import { Plus, Pencil, Trash2, Eye, EyeOff, Award, Loader2, FileText, Upload } from "lucide-react";
 import AdminHeader from "@/components/admin/AdminHeader";
 import { useToast } from "@/components/ui/Toast";
 import { ACHIEVEMENT_CATEGORIES } from "@/lib/achievement-schema";
@@ -18,6 +18,7 @@ const EMPTY_FORM: AchievementFormValues = {
   description: "",
   link: "",
   visible: true,
+  pdfVisible: true,
 };
 
 type ViewState = { mode: "list" } | { mode: "create" } | { mode: "edit"; achievement: StoredAchievement };
@@ -51,7 +52,19 @@ export default function AdminAchievementsPage() {
     fetchAchievements();
   }, [fetchAchievements]);
 
-  const handleCreate = async (values: AchievementFormValues) => {
+  const uploadPdf = async (id: string, file: File): Promise<boolean> => {
+    const fd = new FormData();
+    fd.append("file", file);
+    const res = await fetch(`/api/admin/achievements/${id}/pdf`, { method: "POST", body: fd });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      showToast("error", data.error || "Saved, but the PDF upload failed.");
+      return false;
+    }
+    return true;
+  };
+
+  const handleCreate = async (values: AchievementFormValues, file: File | null) => {
     const res = await fetch("/api/admin/achievements", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -62,12 +75,18 @@ export default function AdminAchievementsPage() {
       showToast("error", data.error || "Failed to add achievement.");
       return;
     }
+    if (file && data.id) await uploadPdf(data.id, file);
     showToast("success", "Achievement added.");
     setView({ mode: "list" });
     fetchAchievements();
   };
 
-  const handleUpdate = async (achievement: StoredAchievement, values: AchievementFormValues) => {
+  const handleUpdate = async (
+    achievement: StoredAchievement,
+    values: AchievementFormValues,
+    file: File | null,
+    removePdf: boolean
+  ) => {
     const res = await fetch(`/api/admin/achievements/${achievement.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -77,6 +96,11 @@ export default function AdminAchievementsPage() {
     if (!res.ok) {
       showToast("error", data.error || "Failed to update achievement.");
       return;
+    }
+    if (file) {
+      await uploadPdf(achievement.id, file);
+    } else if (removePdf && achievement.hasPdf) {
+      await fetch(`/api/admin/achievements/${achievement.id}/pdf`, { method: "DELETE" }).catch(() => {});
     }
     showToast("success", "Achievement updated.");
     setView({ mode: "list" });
@@ -172,6 +196,18 @@ export default function AdminAchievementsPage() {
                       >
                         {achievement.visible ? "Visible" : "Hidden"}
                       </span>
+                      {achievement.hasPdf && (
+                        <span
+                          className={`flex items-center gap-1 rounded-full px-2 py-0.5 font-mono text-[10px] uppercase ${
+                            achievement.pdfVisible
+                              ? "bg-emerald-400/15 text-emerald-300"
+                              : "bg-white/10 text-white/40"
+                          }`}
+                        >
+                          <FileText className="h-3 w-3" />
+                          PDF {achievement.pdfVisible ? "shown" : "hidden"}
+                        </span>
+                      )}
                     </div>
                     {/* Organization and Metric only render when present — same
                         "no empty placeholders" rule as the public site. */}
@@ -232,7 +268,7 @@ export default function AdminAchievementsPage() {
             <h1 className="mb-4 font-display text-2xl font-semibold text-white">Edit achievement</h1>
             <AchievementForm
               initialValues={view.achievement}
-              onSubmit={(values) => handleUpdate(view.achievement, values)}
+              onSubmit={(values, file, removePdf) => handleUpdate(view.achievement, values, file, removePdf)}
               onCancel={() => setView({ mode: "list" })}
               submitLabel="Save changes"
             />
@@ -249,13 +285,16 @@ function AchievementForm({
   onCancel,
   submitLabel,
 }: {
-  initialValues?: Partial<AchievementFormValues>;
-  onSubmit: (values: AchievementFormValues) => Promise<void>;
+  initialValues?: Partial<AchievementFormValues> & { pdfFileName?: string; hasPdf?: boolean };
+  onSubmit: (values: AchievementFormValues, file: File | null, removePdf: boolean) => Promise<void>;
   onCancel: () => void;
   submitLabel: string;
 }) {
   const [form, setForm] = useState<AchievementFormValues>({ ...EMPTY_FORM, ...initialValues });
   const [saving, setSaving] = useState(false);
+  const [file, setFile] = useState<File | null>(null);
+  const [removePdf, setRemovePdf] = useState(false);
+  const existingPdf = initialValues?.hasPdf && !removePdf ? initialValues.pdfFileName || "certificate.pdf" : "";
 
   const set = <K extends keyof AchievementFormValues>(key: K, value: AchievementFormValues[K]) =>
     setForm((f) => ({ ...f, [key]: value }));
@@ -263,7 +302,7 @@ function AchievementForm({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
-    await onSubmit(form);
+    await onSubmit(form, file, removePdf);
     setSaving(false);
   };
 
@@ -351,6 +390,73 @@ function AchievementForm({
           anything with a URL. Shown as a "View certificate" button on the live site. Optional,
           and validated as a URL only if you fill it in.
         </p>
+      </div>
+
+      <div>
+        <label className={labelClass}>Certificate / Document (PDF)</label>
+        {existingPdf && !file && (
+          <div className="mb-2 flex items-center justify-between gap-3 rounded-lg border border-white/10 px-3 py-2">
+            <span className="flex min-w-0 items-center gap-2 font-body text-sm text-white/80">
+              <FileText className="h-4 w-4 shrink-0" />
+              <span className="truncate">{existingPdf}</span>
+            </span>
+            <button
+              type="button"
+              onClick={() => setRemovePdf(true)}
+              className="shrink-0 font-mono text-[11px] text-red-300 hover:underline"
+            >
+              Remove
+            </button>
+          </div>
+        )}
+        {removePdf && (
+          <p className="mb-2 font-mono text-[11px] text-red-300">
+            PDF will be removed when you save.{" "}
+            <button type="button" onClick={() => setRemovePdf(false)} className="underline">
+              Undo
+            </button>
+          </p>
+        )}
+        <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-dashed border-white/20 px-3 py-3 font-body text-sm text-white/80 hover:border-primary/60">
+          <Upload className="h-4 w-4 shrink-0" />
+          <span className="truncate">
+            {file ? file.name : existingPdf ? "Replace PDF…" : "Choose a PDF…"}
+          </span>
+          <input
+            type="file"
+            accept="application/pdf"
+            className="hidden"
+            onChange={(e) => {
+              const f = e.target.files?.[0] ?? null;
+              if (f && f.type !== "application/pdf") {
+                alert("Only PDF files are accepted.");
+                e.target.value = "";
+                return;
+              }
+              if (f && f.size > 10 * 1024 * 1024) {
+                alert("File is too large — 10 MB max.");
+                e.target.value = "";
+                return;
+              }
+              setFile(f);
+              if (f) setRemovePdf(false);
+            }}
+          />
+        </label>
+        <p className="mt-1 font-mono text-[10px] text-white/50">
+          Optional · PDF only · 10 MB max · stored in the same place as your resume.
+        </p>
+        {(file || existingPdf) && (
+          <label className="mt-3 flex items-center gap-2 font-body text-sm text-white/80">
+            <input
+              type="checkbox"
+              checked={form.pdfVisible}
+              onChange={(e) => set("pdfVisible", e.target.checked)}
+              className="h-4 w-4 rounded border-white/20 bg-white/5"
+            />
+            Show this PDF on the live site (uncheck to keep it hidden)
+          </label>
+        )}
       </div>
 
       <label className="flex items-center gap-2 font-body text-sm text-white/80">
