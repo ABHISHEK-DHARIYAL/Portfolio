@@ -140,7 +140,7 @@ export default function ProjectStories() {
                       ? "border-transparent text-white"
                       : "border-white/10 text-white/60 hover:border-white/30 hover:text-white"
                   }`}
-                  style={on ? { backgroundColor: accent } : undefined}
+                  style={on ? { backgroundColor: accent, color: "#fff" } : undefined}
                 >
                   {story.title}
                 </button>
@@ -186,7 +186,7 @@ function StoryView({
     <div className="space-y-6">
       <div>
         {tagline && (
-          <p className="font-mono text-xs" style={{ color: accent }}>
+          <p className="story-accent-text font-mono text-xs" style={{ "--accent": accent } as React.CSSProperties}>
             {tagline}
           </p>
         )}
@@ -211,8 +211,8 @@ function StoryView({
               href={liveUrl}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-1.5 rounded-full px-4 py-2 font-mono text-xs text-white"
-              style={{ backgroundColor: accent }}
+              className="flex items-center gap-1.5 rounded-full px-4 py-2 font-mono text-xs"
+              style={{ backgroundColor: accent, color: "#fff" }}
             >
               <ExternalLink className="h-3.5 w-3.5" /> Live Demo
             </a>
@@ -261,14 +261,14 @@ function StoryView({
             {story.approach.map((a, i) => (
               <li key={a.step} className="relative">
                 <span
-                  className="absolute -left-10 top-0 flex h-7 w-7 items-center justify-center rounded-full font-mono text-[11px] text-white"
-                  style={{ backgroundColor: accent }}
+                  className="absolute -left-10 top-0 flex h-7 w-7 items-center justify-center rounded-full font-mono text-[11px]"
+                  style={{ backgroundColor: accent, color: "#fff" }}
                 >
                   {i + 1}
                 </span>
                 <p className="font-body text-sm font-medium text-white/90">{a.step}</p>
                 {a.detail && (
-                  <p className="mt-1 font-body text-sm leading-relaxed text-white/55">
+                  <p className="mt-1 font-body text-sm leading-relaxed text-white/70">
                     {a.detail}
                   </p>
                 )}
@@ -284,7 +284,7 @@ function StoryView({
             {story.decisions.map((d) => (
               <div key={d.decision} className="rounded-xl border border-white/10 p-4">
                 <p className="font-body text-sm font-medium text-white/90">{d.decision}</p>
-                <p className="mt-1 font-body text-sm text-white/55">{d.reason}</p>
+                <p className="mt-1 font-body text-sm text-white/70">{d.reason}</p>
               </div>
             ))}
           </div>
@@ -297,8 +297,8 @@ function StoryView({
             {story.challenges.map((c) => (
               <div key={c.problem} className="rounded-xl border border-white/10 p-4">
                 <p className="font-body text-sm font-medium text-white/90">{c.problem}</p>
-                <p className="mt-1 font-body text-sm text-white/55">
-                  <span className="font-mono text-[11px]" style={{ color: accent }}>
+                <p className="mt-1 font-body text-sm text-white/70">
+                  <span className="story-accent-text font-mono text-[11px]" style={{ "--accent": accent } as React.CSSProperties}>
                     FIX →{" "}
                   </span>
                   {c.solution}
@@ -313,7 +313,7 @@ function StoryView({
         <Block icon={GraduationCap} label="What I learned" accent={accent}>
           <ul className="space-y-2">
             {story.learned.map((l) => (
-              <li key={l} className="flex items-start gap-2 font-body text-sm text-white/65">
+              <li key={l} className="flex items-start gap-2 font-body text-sm text-white/80">
                 <span
                   className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
                   style={{ backgroundColor: accent }}
@@ -354,7 +354,7 @@ function Block({
           className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10"
           style={{ backgroundColor: `${accent}22` }}
         >
-          <Icon className="h-4 w-4" style={{ color: accent }} />
+          <Icon className="story-accent-text h-4 w-4" style={{ "--accent": accent } as React.CSSProperties} />
         </span>
         <div>
           <h3 className="font-display text-lg font-semibold text-white">{label}</h3>
@@ -368,7 +368,7 @@ function Block({
 
 function Prose({ children }: { children: string }) {
   return (
-    <div className="space-y-3 font-body text-sm leading-relaxed text-white/65 sm:text-base">
+    <div className="space-y-3 font-body text-sm leading-relaxed text-white/80 sm:text-base">
       {children.split("\n\n").map((para, i) => (
         <p key={i}>{para}</p>
       ))}

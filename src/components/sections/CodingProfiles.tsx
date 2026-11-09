@@ -52,6 +52,9 @@ export default function CodingProfiles() {
     <section id="coding-profiles" className="relative px-6 pb-32">
       <div className="mx-auto max-w-3xl text-center">
         <p className="mb-3 font-mono text-sm text-primary">Coding Profiles</p>
+        <h2 className="mb-10 font-display text-3xl font-semibold text-white sm:text-4xl">
+          Where I practice &amp; compete
+        </h2>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -99,7 +102,7 @@ export default function CodingProfiles() {
               );
             })}
           </div>
-          <p className="font-mono text-[11px] text-white/30">
+          <p className="font-mono text-[11px] text-white/50">
             Tap a platform to see the profile, or open it directly.
           </p>
         </motion.div>
@@ -151,7 +154,7 @@ export default function CodingProfiles() {
                     {active.handle && (
                       <p className="mt-1 font-mono text-sm text-white/50">{active.handle}</p>
                     )}
-                    <p className="mt-4 font-mono text-[11px] leading-relaxed text-white/30">
+                    <p className="mt-4 font-mono text-[11px] leading-relaxed text-white/50">
                       No public, reliable API exists for this platform&apos;s stats — visit the
                       profile directly for current numbers rather than a stale snapshot here.
                     </p>

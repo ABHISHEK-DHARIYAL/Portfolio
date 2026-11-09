@@ -363,3 +363,83 @@ body {
 [data-theme="light"] .zui-stage .border-primary\/30 {
   border-color: rgb(124 58 237 / 0.3);
 }
+
+/* ============================================================================
+ * READABILITY FIXES (both themes)
+ * ----------------------------------------------------------------------------
+ * LIGHT: these opacity steps were used in components (mostly the Stories page)
+ * but had no light-theme rule, so they stayed pure white on a white page.
+ * DARK: the dimmest steps (white/25-50) and the violet brand color were too
+ * low-contrast on the near-black background, so they're lifted a little.
+ * ==========================================================================*/
+[data-theme="light"] .text-white\/25 {
+  color: rgb(20 18 31 / 0.5);
+}
+[data-theme="light"] .text-white\/55 {
+  color: rgb(20 18 31 / 0.7);
+}
+[data-theme="light"] .text-white\/65 {
+  color: rgb(20 18 31 / 0.78);
+}
+[data-theme="light"] .group:hover .group-hover\:text-white\/80 {
+  color: rgb(20 18 31 / 0.9);
+}
+[data-theme="light"] .hover\:border-white\/30:hover {
+  border-color: rgb(124 58 237 / 0.5);
+}
+[data-theme="light"] .bg-white\/20 {
+  background-color: rgb(20 18 31 / 0.18);
+}
+[data-theme="light"] .bg-white\/80 {
+  background-color: rgb(20 18 31 / 0.75);
+}
+[data-theme="light"] .divide-white\/5 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgb(20 18 31 / 0.1);
+}
+
+/* Accent-colored text (story titles, icons, "FIX →"): darken in light mode */
+.story-accent-text {
+  color: var(--accent);
+}
+[data-theme="light"] .story-accent-text {
+  color: color-mix(in srgb, var(--accent) 68%, #000);
+}
+
+/* Dark theme: lift dim text so it is actually legible */
+html:not([data-theme="light"]) .text-white\/25 {
+  color: rgb(255 255 255 / 0.5);
+}
+html:not([data-theme="light"]) .text-white\/30 {
+  color: rgb(255 255 255 / 0.55);
+}
+html:not([data-theme="light"]) .text-white\/40 {
+  color: rgb(255 255 255 / 0.62);
+}
+html:not([data-theme="light"]) .text-white\/50 {
+  color: rgb(255 255 255 / 0.7);
+}
+html:not([data-theme="light"]) .text-white\/55 {
+  color: rgb(255 255 255 / 0.74);
+}
+html:not([data-theme="light"]) .text-white\/60 {
+  color: rgb(255 255 255 / 0.78);
+}
+html:not([data-theme="light"]) .text-white\/65 {
+  color: rgb(255 255 255 / 0.82);
+}
+html:not([data-theme="light"]) .text-white\/70 {
+  color: rgb(255 255 255 / 0.86);
+}
+html:not([data-theme="light"]) .placeholder\:text-white\/30::placeholder {
+  color: rgb(255 255 255 / 0.5);
+}
+html:not([data-theme="light"]) .text-primary {
+  color: #a78bfa;
+}
+html:not([data-theme="light"]) .text-accent {
+  color: #60a5fa;
+}
+/* keep brand-colored text on gradient/solid fills white */
+html:not([data-theme="light"]) .bg-gradient-brand .text-primary {
+  color: #fff;
+}

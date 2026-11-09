@@ -10,6 +10,7 @@ import {
   Briefcase,
   Award,
   Github,
+  Code2,
   Mail,
   Download,
 } from "lucide-react";
@@ -50,6 +51,7 @@ export default function CommandPalette() {
     { label: "Journey", hint: "How it started", icon: Briefcase, action: goTo("journey") },
     { label: "Achievements", hint: "Milestones along the way", icon: Award, action: goTo("achievements") },
     { label: "GitHub", hint: "Live repo & profile stats", icon: Github, action: goTo("github") },
+    { label: "Coding Profiles", hint: "LeetCode, Codeforces & more", icon: Code2, action: goTo("coding-profiles") },
     { label: "Contact", hint: "Get in touch", icon: Mail, action: goTo("contact") },
     {
       label: "Download Resume",

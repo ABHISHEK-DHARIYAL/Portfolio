@@ -14,6 +14,7 @@ const LINKS = [
   { id: "journey", label: "Journey" },
   { id: "achievements", label: "Achievements" },
   { id: "github", label: "GitHub" },
+  { id: "coding-profiles", label: "Profiles" },
   { id: "contact", label: "Contact" },
 ];
 
