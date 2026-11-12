@@ -10,7 +10,6 @@ import Navbar from "./Navbar";
 import SkipLink from "./SkipLink";
 import SmoothScrollProvider from "./SmoothScrollProvider";
 import ThemeProvider from "./ThemeProvider";
-import SoundProvider from "./SoundProvider";
 import AmbientBackground from "./AmbientBackground";
 import ParticleField from "./ParticleField";
 import CookieConsent from "./CookieConsent";
@@ -23,7 +22,6 @@ export default function PageShell({ children }: { children: ReactNode }) {
 
   return (
     <ThemeProvider>
-      <SoundProvider>
         <ToastProvider>
           <SkipLink />
           {loading && <Loader onDone={() => setLoading(false)} />}
@@ -51,7 +49,6 @@ export default function PageShell({ children }: { children: ReactNode }) {
           <FloatingDock />
           <EasterEggs />
         </ToastProvider>
-      </SoundProvider>
     </ThemeProvider>
   );
 }

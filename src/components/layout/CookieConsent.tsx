@@ -96,7 +96,7 @@ export default function CookieConsent() {
                     />
                     <PrefRow
                       label="Preferences"
-                      description="Remembers theme and sound settings."
+                      description="Remembers your theme setting."
                       checked={prefs.preferences}
                       onChange={(v) => setPrefs((p) => ({ ...p, preferences: v }))}
                     />

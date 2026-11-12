@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
-import { useSound } from "./SoundProvider";
 
 const KONAMI = [
   "ArrowUp",
@@ -71,7 +70,6 @@ export default function EasterEggs() {
   const [confetti, setConfetti] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const buffer = useRef<string[]>([]);
-  const { play } = useSound();
 
   useEffect(() => {
     // hidden developer console message
@@ -88,7 +86,6 @@ export default function EasterEggs() {
         setMatrix((m) => !m);
         setConfetti(true);
         setToast("Achievement unlocked: Konami Master");
-        play("achievement");
         setTimeout(() => setConfetti(false), 2600);
         setTimeout(() => setToast(null), 3200);
       }

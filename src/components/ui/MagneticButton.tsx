@@ -3,7 +3,6 @@
 import { ButtonHTMLAttributes, ReactNode, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { useSound } from "@/components/layout/SoundProvider";
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode;
@@ -22,7 +21,6 @@ export default function MagneticButton({
 }: Props) {
   const ref = useRef<HTMLButtonElement>(null);
   const [ripples, setRipples] = useState<{ id: number; x: number; y: number; size: number }[]>([]);
-  const { play } = useSound();
 
   const handleMove = (e: React.MouseEvent<HTMLButtonElement>) => {
     const rect = ref.current?.getBoundingClientRect();
@@ -55,11 +53,9 @@ export default function MagneticButton({
       onMouseMove={handleMove}
       onMouseLeave={reset}
       onMouseEnter={(e) => {
-        play("hover");
         onMouseEnter?.(e);
       }}
       onClick={(e) => {
-        play("click");
         spawnRipple(e);
         onClick?.(e);
       }}

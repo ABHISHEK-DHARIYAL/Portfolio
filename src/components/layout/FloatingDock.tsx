@@ -1,20 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { TerminalSquare, Bot, Volume2, VolumeX, Sparkles } from "lucide-react";
-import Terminal from "./Terminal";
+import { motion } from "framer-motion";
+import { Bot } from "lucide-react";
 import AIAssistant from "./AIAssistant";
-import ZuiFunMode from "./ZuiFunMode";
-import { useSound } from "./SoundProvider";
-
-
 
 export default function FloatingDock() {
-  const [terminalOpen, setTerminalOpen] = useState(false);
   const [assistantOpen, setAssistantOpen] = useState(false);
-  const [zuiOpen, setZuiOpen] = useState(false);
-  const { muted, toggleMuted, play } = useSound();
 
   return (
     <>
@@ -22,53 +14,13 @@ export default function FloatingDock() {
         <DockButton
           active={assistantOpen}
           label="AI guide"
-          onClick={() => {
-            play("click");
-            setAssistantOpen((v) => !v);
-            setTerminalOpen(false);
-          }}
+          onClick={() => setAssistantOpen((v) => !v)}
         >
           <Bot className="h-5 w-5" />
         </DockButton>
-        <DockButton
-          active={terminalOpen}
-          label="Terminal"
-          onClick={() => {
-            play("click");
-            setTerminalOpen((v) => !v);
-            setAssistantOpen(false);
-          }}
-        >
-          <TerminalSquare className="h-5 w-5" />
-        </DockButton>
-        <DockButton
-          active={zuiOpen}
-          label="Explore (fun mode)"
-          onClick={() => {
-            play("click");
-            setZuiOpen(true);
-            setTerminalOpen(false);
-            setAssistantOpen(false);
-          }}
-        >
-          <Sparkles className="h-5 w-5" />
-        </DockButton>
-        <DockButton
-          active={!muted}
-          label={muted ? "Unmute sound" : "Mute sound"}
-          onClick={() => {
-            toggleMuted();
-          }}
-        >
-          {muted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
-        </DockButton>
       </div>
 
-      <AnimatePresence>
-        {terminalOpen && <Terminal key="terminal" onClose={() => setTerminalOpen(false)} />}
-      </AnimatePresence>
       <AIAssistant open={assistantOpen} onClose={() => setAssistantOpen(false)} />
-      <ZuiFunMode open={zuiOpen} onClose={() => setZuiOpen(false)} />
     </>
   );
 }

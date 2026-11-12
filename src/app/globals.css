@@ -61,7 +61,7 @@ body {
  * not a typo.
  *
  * Floating overlay chrome — the command palette, cookie consent panel,
- * terminal, AI assistant panel, project modal, easter-egg toast, and the
+ * AI assistant panel, project modal, easter-egg toast, and the
  * admin message modal — carry the `.theme-lock-dark` class. They keep their
  * dark surface in dark mode and turn into white cards in light mode (see
  * "FLOATING PANELS" at the bottom of this file). The hero's 3D scene
@@ -220,7 +220,7 @@ body {
 /* ============================================================================
  * LIGHT THEME — FLOATING PANELS & MISSING VARIANTS
  * ----------------------------------------------------------------------------
- * The chatbot, terminal, command palette, cookie banner, project modal,
+ * The chatbot, command palette, cookie banner, project modal,
  * easter-egg toast and admin message modal used to stay dark in both themes.
  * They now follow the theme: in light mode their hard-coded dark surface
  * becomes a white card, and because they no longer lock their inner colors,
@@ -243,7 +243,7 @@ body {
   background-color: rgb(30 27 50 / 0.18);
 }
 
-/* Terminal blinking cursor + toggle knobs (bg-white on light = invisible) */
+/* Toggle knobs (bg-white on light = invisible) */
 [data-theme="light"] .animate-blink.bg-white {
   background-color: #0f766e;
 }
@@ -318,50 +318,6 @@ body {
 [data-theme="light"] .bg-emerald-950\/80,
 [data-theme="light"] .bg-red-950\/80 {
   background-color: #ffffff;
-}
-
-/* ============================================================================
- * ZUI FUN MODE — always-dark immersive stage
- * ----------------------------------------------------------------------------
- * ZuiFunMode.tsx is a full-screen "explore" overlay built around a glowing
- * figure on a near-black canvas — the dark background is the point (glow
- * effects wash out on white) and it's intentionally the same in both site
- * themes, unlike the floating panels above that flip to a white card in
- * light mode. `.zui-stage` re-pins the light-theme color rules that would
- * otherwise darken its "text-white/*" etc. utility classes to match.
- * ==========================================================================*/
-[data-theme="light"] .zui-stage.text-white,
-[data-theme="light"] .zui-stage .text-white {
-  color: #ffffff;
-}
-[data-theme="light"] .zui-stage .text-white\/70 {
-  color: rgb(255 255 255 / 0.7);
-}
-[data-theme="light"] .zui-stage .text-white\/60 {
-  color: rgb(255 255 255 / 0.6);
-}
-[data-theme="light"] .zui-stage .text-white\/40 {
-  color: rgb(255 255 255 / 0.4);
-}
-[data-theme="light"] .zui-stage .text-white\/25 {
-  color: rgb(255 255 255 / 0.25);
-}
-[data-theme="light"] .zui-stage .border-white\/15 {
-  border-color: rgb(255 255 255 / 0.15);
-}
-[data-theme="light"] .zui-stage .border-white\/30,
-[data-theme="light"] .zui-stage .hover\:border-white\/40:hover,
-[data-theme="light"] .zui-stage .hover\:border-white\/30:hover {
-  border-color: rgb(255 255 255 / 0.3);
-}
-[data-theme="light"] .zui-stage .bg-white\/5 {
-  background-color: rgb(255 255 255 / 0.05);
-}
-[data-theme="light"] .zui-stage .text-primary {
-  color: #64ffda;
-}
-[data-theme="light"] .zui-stage .border-primary\/30 {
-  border-color: rgb(100 255 218 / 0.3);
 }
 
 /* ============================================================================
@@ -451,10 +407,18 @@ html:not([data-theme="light"]) .placeholder\:text-white\/30::placeholder {
   color: #0a192f !important;
 }
 
-/* Always-dark Zui stage keeps light text */
-[data-theme="light"] .zui-stage :is(.text-white,.text-white\/25,.text-white\/40,.text-white\/60,.text-white\/70) {
-  color: #ccd6f6;
+/* ============================================================================
+ * CUSTOM CURSOR
+ * CustomCursor.tsx adds `custom-cursor` to <html> only on devices with a
+ * real mouse, so touch screens and no-JS visitors keep the normal pointer.
+ * ==========================================================================*/
+:root {
+  --cursor-color: #64ffda;
 }
-[data-theme="light"] .zui-stage .text-primary {
-  color: #64ffda;
+[data-theme="light"] {
+  --cursor-color: #0f766e;
+}
+html.custom-cursor,
+html.custom-cursor * {
+  cursor: none !important;
 }

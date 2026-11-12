@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={fontVariables}>
-      <body className="bg-base font-body text-white antialiased md:cursor-none">
+      <body className="bg-base font-body text-white antialiased">
         <PageShell>{children}</PageShell>
         <Script
           data-goatcounter="https://abhishek-digitalhub.goatcounter.com/count"

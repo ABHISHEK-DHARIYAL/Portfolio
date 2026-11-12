@@ -176,7 +176,7 @@ export default function AdminResumesPage() {
         )}
 
         <p className="mb-6 font-body text-sm text-white/50">
-          The "Download Resume" button, the command palette, and the terminal all link to{" "}
+          The "Download Resume" button, and the command palette both link to{" "}
           <code className="font-mono text-white/70">/api/resume</code>, which always redirects to
           whichever file is marked <strong className="text-white/70">active</strong> below. A new
           upload becomes active immediately — no extra step needed.
