@@ -7,13 +7,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Command, Sun, Moon, Menu, X } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 
-const LINKS = [
+const LINKS: { id: string; label: string; also?: string[] }[] = [
   { id: "about", label: "About" },
   { id: "projects", label: "Projects" },
   { id: "journey", label: "Journey" },
   { id: "achievements", label: "Achievements" },
-  { id: "github", label: "GitHub" },
-  { id: "coding-profiles", label: "Profiles" },
+  // One "Profiles" entry for both the GitHub card and the coding-profile
+  // cards (they sit back to back); it stays highlighted across both.
+  { id: "github", label: "Profiles", also: ["coding-profiles"] },
   { id: "contact", label: "Contact" },
 ];
 
@@ -36,6 +37,8 @@ export default function Navbar() {
   const onHome = pathname === "/";
   // On a separate page (e.g. /stories) no home section is "active".
   const current = onHome ? active : "";
+  const isActive = (l: { id: string; also?: string[] }) =>
+    current === l.id || (l.also?.includes(current) ?? false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -44,7 +47,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const ids = ["hero", ...LINKS.map((l) => l.id)];
+    const ids = ["hero", ...LINKS.flatMap((l) => [l.id, ...(l.also ?? [])])];
     const sections = ids
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => !!el);
@@ -142,12 +145,12 @@ export default function Navbar() {
               <button
                 onClick={goTo(l.id)}
                 className={`font-body text-sm transition ${
-                  current === l.id ? "text-white" : "text-white/60 hover:text-white"
+                  isActive(l) ? "text-white" : "text-white/60 hover:text-white"
                 }`}
               >
                 {l.label}
               </button>
-              {current === l.id && (
+              {isActive(l) && (
                 <motion.span
                   layoutId="nav-active"
                   className="absolute -bottom-1.5 left-0 h-[2px] w-full bg-gradient-brand"
@@ -250,7 +253,7 @@ export default function Navbar() {
                     <button
                       onClick={goTo(l.id)}
                       className={`w-full rounded-xl px-4 py-3 text-left font-body text-sm transition ${
-                        current === l.id
+                        isActive(l)
                           ? "bg-primary/15 text-white"
                           : "text-white/70 hover:bg-white/5 hover:text-white"
                       }`}
