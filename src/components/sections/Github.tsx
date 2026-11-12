@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Github, Star, GitFork, Users, ExternalLink } from "lucide-react";
+import { Github, Star, Users, ExternalLink } from "lucide-react";
 import GlassCard from "@/components/ui/GlassCard";
+import ProfileCard from "./ProfileCard";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import HexMark from "@/components/layout/HexMark";
 
@@ -70,7 +71,6 @@ export default function GithubSection() {
   const topLanguages = Object.entries(languageCounts)
     .sort((a, b) => b[1] - a[1])
     .slice(0, 5);
-  const topRepos = [...repos].sort((a, b) => b.stargazers_count - a.stargazers_count).slice(0, 6);
 
   return (
     <section id="github" className="relative px-6 py-32">
@@ -123,16 +123,26 @@ export default function GithubSection() {
         )}
 
         {status === "ready" && user && (
-          <>
-            <div className="mb-8 grid grid-cols-3 gap-4">
+          <ProfileCard
+            index={0}
+            accent="#64ffda"
+            badge="GH"
+            title="GitHub"
+            subtitle={`@${USERNAME}`}
+            detailsHref="/github"
+            externalHref={PROFILE_URL}
+            externalLabel="GitHub"
+            className="mx-auto max-w-3xl"
+          >
+            <div className="grid grid-cols-3 gap-3">
               <StatCard icon={Github} value={user.public_repos} label="Public Repos" />
               <StatCard icon={Users} value={user.followers} label="Followers" />
               <StatCard icon={Star} value={totalStars} label="Total Stars" />
             </div>
 
             {topLanguages.length > 0 && (
-              <GlassCard className="mb-8 p-6" glow="#57cbff">
-                <p className="mb-4 font-mono text-xs uppercase tracking-widest text-white/40">
+              <div className="mt-6">
+                <p className="mb-3 font-mono text-xs uppercase tracking-widest text-white/40">
                   Most-used languages across public repos
                 </p>
                 <div className="space-y-2">
@@ -140,49 +150,15 @@ export default function GithubSection() {
                     <div key={lang} className="flex items-center gap-3">
                       <span className="w-24 shrink-0 font-mono text-xs text-white/60">{lang}</span>
                       <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
-                        <div
-                          className="h-full rounded-full bg-gradient-brand"
-                          style={{ width: `${(count / repos.length) * 100}%` }}
-                        />
+                        <div className="h-full rounded-full bg-gradient-brand" style={{ width: `${(count / repos.length) * 100}%` }} />
                       </div>
                       <span className="w-6 text-right font-mono text-xs text-white/40">{count}</span>
                     </div>
                   ))}
                 </div>
-              </GlassCard>
-            )}
-
-            {topRepos.length > 0 && (
-              <div className="grid gap-4 sm:grid-cols-2">
-                {topRepos.map((repo) => (
-                  <a key={repo.name} href={repo.html_url} target="_blank" rel="noreferrer" data-cursor="pointer">
-                    <GlassCard className="h-full p-5" glow="#22D3EE">
-                      <div className="flex items-center gap-2">
-                        <Github className="h-4 w-4 text-white/60" />
-                        <span className="font-display text-sm font-semibold text-white">
-                          {repo.name}
-                        </span>
-                      </div>
-                      {repo.description && (
-                        <p className="mt-2 line-clamp-2 font-body text-xs text-white/50">
-                          {repo.description}
-                        </p>
-                      )}
-                      <div className="mt-4 flex items-center gap-4 font-mono text-[11px] text-white/40">
-                        <span className="flex items-center gap-1">
-                          <Star className="h-3 w-3" /> {repo.stargazers_count}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <GitFork className="h-3 w-3" /> {repo.forks_count}
-                        </span>
-                        {repo.language && <span>{repo.language}</span>}
-                      </div>
-                    </GlassCard>
-                  </a>
-                ))}
               </div>
             )}
-          </>
+          </ProfileCard>
         )}
       </div>
     </section>
