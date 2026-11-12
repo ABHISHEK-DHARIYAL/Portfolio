@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Inbox, FolderGit2, BookOpen, Layers, FileText, Trophy, Award, Sun, Moon, LogOut } from "lucide-react";
+import { Inbox, FolderGit2, BookOpen, Layers, FileText, Trophy, Award, UserRound, Sun, Moon, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@/components/layout/ThemeProvider";
 
@@ -14,6 +14,7 @@ const TABS = [
   { href: "/admin/resumes", label: "Resume", icon: FileText },
   { href: "/admin/achievements", label: "Achievements", icon: Award },
   { href: "/admin/contests", label: "Coding Profiles", icon: Trophy },
+  { href: "/admin/about", label: "About", icon: UserRound },
 ];
 
 export default function AdminHeader() {
