@@ -16,7 +16,7 @@ export const defaultAbout: AboutContent = {
   ],
   stats: [
     { value: "1,954", label: "LeetCode contest rating", detail: "Knight · top 3.4% globally · 48 contests" },
-    { value: "651", label: "LeetCode problems solved", detail: "198 easy · 355 medium · 98 hard" },
+    { value: "651+", label: "Coding problems solved", detail: "LeetCode, Codeforces & CodeChef combined" },
     { value: "1812", label: "CodeChef rating", detail: "4★ · highest 1814 · global rank 3697" },
     { value: "1328", label: "Codeforces rating", detail: "Pupil · max 1374" },
   ],
