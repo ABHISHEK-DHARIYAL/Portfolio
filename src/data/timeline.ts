@@ -1,3 +1,5 @@
+import type { JourneyContent } from "@/lib/journey-schema";
+
 export const aboutTimeline = [
   {
     title: "Bachelor of Technology — CSBS",
@@ -92,3 +94,15 @@ export const journeySteps: JourneyStep[] = [
     description: "A digital learning platform.",
   },
 ];
+
+/**
+ * Default Journey content: what the site shows until you save your own
+ * version at /admin/journey (and what "Reset to defaults" restores).
+ */
+export const defaultJourney: JourneyContent = {
+  steps: journeySteps.map((s) => ({
+    year: s.year ?? "",
+    title: s.title,
+    description: s.description,
+  })),
+};

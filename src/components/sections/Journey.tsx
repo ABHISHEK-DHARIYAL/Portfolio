@@ -2,22 +2,39 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { ChevronLeft, ChevronRight, GraduationCap, Code2, Wrench, Rocket } from "lucide-react";
-import { journeySteps } from "@/data/timeline";
+import { ChevronLeft, ChevronRight, GraduationCap, Code2, Rocket } from "lucide-react";
+import { defaultJourney } from "@/data/timeline";
+import type { JourneyContent } from "@/lib/journey-schema";
 import GlassCard from "@/components/ui/GlassCard";
 
 const ICONS = [GraduationCap, Code2, Code2, Rocket, Rocket, Rocket, Rocket, Rocket, Rocket, Rocket];
 
 /**
  * Horizontal timeline: small cards in a row you swipe / scroll sideways
- * (arrow buttons on the right for mouse users). Content lives in
- * src/data/timeline.ts.
+ * (arrow buttons on the right for mouse users). Content is edited at
+ * /admin/journey (defaults in src/data/timeline.ts).
  */
 export default function Journey() {
   const reduce = useReducedMotion();
+  const [journey, setJourney] = useState<JourneyContent>(defaultJourney);
+  const steps = journey.steps;
   const scroller = useRef<HTMLDivElement>(null);
   const [canLeft, setCanLeft] = useState(false);
   const [canRight, setCanRight] = useState(true);
+
+  // Content comes from /admin/journey; the defaults show until it loads.
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/journey")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (!cancelled && data?.journey?.steps?.length) setJourney(data.journey);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const update = useCallback(() => {
     const el = scroller.current;
@@ -36,7 +53,7 @@ export default function Journey() {
       el.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
     };
-  }, [update]);
+  }, [update, steps.length]);
 
   const scrollBy = (dir: 1 | -1) => {
     const el = scroller.current;
@@ -92,11 +109,11 @@ export default function Journey() {
           tabIndex={0}
           className="flex snap-x snap-mandatory overflow-x-auto pb-4"
         >
-          {journeySteps.map((step, i) => {
-            const Icon = ICONS[i] ?? Wrench;
-            const last = i === journeySteps.length - 1;
+          {steps.map((step, i) => {
+            const Icon = ICONS[i] ?? Rocket;
+            const last = i === steps.length - 1;
             return (
-              <div key={step.title} className="flex w-48 shrink-0 snap-start flex-col pr-3 sm:w-56">
+              <div key={`${step.title}-${i}`} className="flex w-48 shrink-0 snap-start flex-col pr-3 sm:w-56">
                 {/* dot on the timeline; the line runs on to the next dot */}
                 <div className="relative flex h-7 items-center">
                   <span className="relative z-10 flex h-7 w-7 items-center justify-center rounded-full bg-gradient-brand shadow-glow">
