@@ -76,6 +76,8 @@ export default function ProjectCard({
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <Link
               href={`/projects/${project.slug}`}
+              target="_blank"
+              rel="noreferrer"
               data-cursor="pointer"
               className="group/btn inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-2 font-mono text-xs text-white transition hover:border-primary hover:bg-primary/20"
             >

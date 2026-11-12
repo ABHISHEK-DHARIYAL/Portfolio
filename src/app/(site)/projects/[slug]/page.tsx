@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import Footer from "@/components/layout/Footer";
 import { getProjectBySlug } from "@/lib/get-projects";
+import { projectHasStory } from "@/lib/get-stories";
 
 // Project content comes from the admin (Firestore); refresh it every minute.
 export const revalidate = 60;
@@ -32,6 +33,7 @@ export default async function ProjectPage({ params }: Props) {
   const project = await getProjectBySlug(slug);
   if (!project) notFound();
 
+  const hasStory = await projectHasStory(project.slug);
   const hasDetails =
     Boolean(project.description) ||
     project.highlights.length > 0 ||
@@ -86,13 +88,15 @@ export default async function ProjectPage({ params }: Props) {
                   <Github className="h-3.5 w-3.5" /> GitHub
                 </a>
               )}
-              <Link
-                href={`/stories#${project.slug}`}
-                data-cursor="pointer"
-                className="flex items-center gap-1.5 rounded-full border border-white/15 px-4 py-2 font-mono text-xs text-white/80 transition hover:border-white/40"
-              >
-                <BookOpen className="h-3.5 w-3.5" /> Read the story
-              </Link>
+              {hasStory && (
+                <Link
+                  href={`/stories#${project.slug}`}
+                  data-cursor="pointer"
+                  className="flex items-center gap-1.5 rounded-full border border-white/15 px-4 py-2 font-mono text-xs text-white/80 transition hover:border-white/40"
+                >
+                  <BookOpen className="h-3.5 w-3.5" /> Read the story
+                </Link>
+              )}
             </div>
           </header>
 
