@@ -6,27 +6,17 @@ import Link from "next/link";
 import { useTheme } from "@/components/layout/ThemeProvider";
 import { ArrowRight, ChevronDown, Download, Mail, FolderGit2 } from "lucide-react";
 import MagneticButton from "@/components/ui/MagneticButton";
+import { defaultHero } from "@/data/hero";
+import type { HeroQuestion } from "@/lib/hero-schema";
 
 const ROLES = ["Software Engineer", "Full Stack Developer", "AI Enthusiast"];
 /**
- * Each question links to where the visitor is taken ("href"), with the
- * button text ("cta"). Change `href` to point anywhere:
- *   "#projects"            → scrolls to that section of the home page
- *                            (ids: about, skills, projects, journey,
- *                            achievements, github, contact)
- *   "/stories"             → another page on this site
- *   "https://example.com"  → an external site (opens in a new tab)
+ * The rotating questions are edited at /admin/hero (defaults live in
+ * src/data/hero.ts). Each question links to where the visitor is taken
+ * ("href"): "#projects" scrolls to a section, "/stories" opens a page on
+ * this site, "https://…" opens an external site in a new tab.
  */
-type QAItem = { q: string; a: string; href: string; cta: string };
-
-const QA: QAItem[] = [
-  { q: "Why should you hire me?", a: "I turn ideas into products that ship.", href: "#projects", cta: "See my projects" },
-  { q: "What can I bring to your team?", a: "Clean code, fast learning, and ownership.", href: "/skills", cta: "See my skills" },
-  { q: "What problems do I solve?", a: "I build scalable systems and intelligent platforms.", href: "/stories", cta: "Read the stories behind my projects" },
-  { q: "What makes me different?", a: "I blend full-stack skills with an AI mindset.", href: "#about", cta: "More about me" },
-  { q: "How do I handle challenges?", a: "I break them down, iterate, and deliver.", href: "#journey", cta: "See my journey" },
-  { q: "Where do I add value fast?", a: "From day one: building, debugging, improving.", href: "#achievements", cta: "See my achievements" },
-];
+type QAItem = HeroQuestion;
 
 /** Types out the answer for the current question, then moves to the next question. */
 function useQuestionCycle(items: QAItem[], paused: boolean) {
@@ -36,7 +26,7 @@ function useQuestionCycle(items: QAItem[], paused: boolean) {
 
   useEffect(() => {
     if (paused) return; // hold still while the visitor hovers / focuses
-    const current = items[index].a;
+    const current = items[index % items.length].a;
     const speed = deleting ? 25 : 45;
     const t = setTimeout(() => {
       if (!deleting) {
@@ -55,7 +45,7 @@ function useQuestionCycle(items: QAItem[], paused: boolean) {
     return () => clearTimeout(t);
   }, [text, deleting, index, items, paused]);
 
-  return { item: items[index], index, text };
+  return { item: items[index % items.length], index, text };
 }
 
 function QALink({ href, cta }: { href: string; cta: string }) {
@@ -99,7 +89,23 @@ function useRoleCycle(roles: string[]) {
 
 export default function Hero() {
   const [paused, setPaused] = useState(false);
-  const { item, index, text: typed } = useQuestionCycle(QA, paused);
+  const [questions, setQuestions] = useState<QAItem[]>(defaultHero.items);
+  const { item, index, text: typed } = useQuestionCycle(questions, paused);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/hero")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (!cancelled && Array.isArray(data?.hero?.items) && data.hero.items.length > 0) {
+          setQuestions(data.hero.items);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
   const role = useRoleCycle(ROLES);
 
   // Explicit, theme-aware colors for the hero text and background, so the

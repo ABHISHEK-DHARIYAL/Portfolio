@@ -19,7 +19,11 @@ export const aboutSchema = z.object({
         detail: z.string().trim().max(120).default(""),
       })
     )
-    .max(8),
+    .max(8)
+    // The four stat boxes are no longer edited by hand — they're filled live
+    // from LeetCode / CodeChef / Codeforces (see lib/live-stats.ts). The field
+    // stays optional only so older saved documents keep validating.
+    .default([]),
   links: z
     .array(
       z.object({

@@ -34,7 +34,7 @@ export default function Footer() {
 
   useEffect(() => {
     let cancelled = false;
-    fetch("/api/about")
+    fetch("/api/about?stats=0")
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
         if (!cancelled && Array.isArray(data?.about?.links)) setLinks(data.about.links);

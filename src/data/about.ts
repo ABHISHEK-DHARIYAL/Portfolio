@@ -3,7 +3,9 @@ import type { AboutContent } from "@/lib/about-schema";
 /**
  * Default About content. This is what the site shows until you save your
  * own version at /admin/about (and what "Reset to defaults" restores).
- * Numbers are as of November 2026.
+ * The `stats` below are only a FALLBACK: the site fills those four boxes live
+ * from LeetCode / CodeChef / Codeforces (lib/live-stats.ts) and falls back to
+ * these numbers (as of November 2026) if a platform can't be reached.
  */
 export const defaultAbout: AboutContent = {
   heading: "Competitive programmer building real systems",

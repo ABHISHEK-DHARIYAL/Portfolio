@@ -169,58 +169,13 @@ export default function AdminAboutPage() {
           </div>
         </div>
 
-        {/* Stat boxes */}
-        <div className={card}>
-          <label className={LABEL}>Stat boxes (shown beside the text)</label>
-          <div className="space-y-4">
-            {form.stats.map((s, i) => (
-              <div key={i} className="rounded-xl border border-white/10 p-4">
-                <div className="grid gap-3 sm:grid-cols-[110px_1fr]">
-                  <input
-                    required
-                    placeholder="Value"
-                    value={s.value}
-                    onChange={(e) => patch({ stats: form.stats.map((x, j) => (j === i ? { ...x, value: e.target.value } : x)) })}
-                    className={INPUT}
-                  />
-                  <input
-                    required
-                    placeholder="Label (e.g. LeetCode contest rating)"
-                    value={s.label}
-                    onChange={(e) => patch({ stats: form.stats.map((x, j) => (j === i ? { ...x, label: e.target.value } : x)) })}
-                    className={INPUT}
-                  />
-                </div>
-                <input
-                  placeholder="Detail line (optional)"
-                  value={s.detail}
-                  onChange={(e) => patch({ stats: form.stats.map((x, j) => (j === i ? { ...x, detail: e.target.value } : x)) })}
-                  className={`${INPUT} mt-3`}
-                />
-                <div className="mt-3 flex gap-2">
-                  <button type="button" aria-label="Move up" disabled={i === 0} onClick={() => patch({ stats: move(form.stats, i, i - 1) })} className={small}>
-                    <ArrowUp className="h-4 w-4" />
-                  </button>
-                  <button type="button" aria-label="Move down" disabled={i === form.stats.length - 1} onClick={() => patch({ stats: move(form.stats, i, i + 1) })} className={small}>
-                    <ArrowDown className="h-4 w-4" />
-                  </button>
-                  <button type="button" aria-label="Remove box" onClick={() => patch({ stats: form.stats.filter((_, j) => j !== i) })} className={small}>
-                    <Trash2 className="h-4 w-4" />
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-          {form.stats.length < 8 && (
-            <button
-              type="button"
-              onClick={() => patch({ stats: [...form.stats, { value: "", label: "", detail: "" }] })}
-              className="flex items-center gap-1.5 font-mono text-xs text-primary"
-            >
-              <Plus className="h-3.5 w-3.5" /> Add box
-            </button>
-          )}
-        </div>
+        {/* The four stat boxes (LeetCode / CodeChef / Codeforces numbers) are
+            filled automatically from your profiles — nothing to edit here.
+            They use the LeetCode, CodeChef and Codeforces links below. */}
+        <p className="rounded-xl border border-white/10 bg-white/[0.03] p-4 font-body text-sm text-white/50">
+          The four stat boxes (ratings and problems solved) update automatically from your LeetCode, CodeChef and
+          Codeforces profiles. Keep those three links below correct — that&apos;s how the site finds your usernames.
+        </p>
 
         {/* Icon links */}
         <div className={card}>
