@@ -51,17 +51,17 @@ export const journeySteps: JourneyStep[] = [
   {
     year: "2024",
     title: "Started B.Tech at PDEU",
-    description: "Began Computer Science and Business Systems (CSBS) at PDEU.",
+    description: "Began CSBS at PDEU.",
   },
   {
     year: "2024",
     title: "Learned C++",
-    description: "Picked up C++ as a foundation for systems thinking and problem solving.",
+    description: "My base for problem solving.",
   },
   {
     year: "2024",
     title: "Data Structures & Algorithms",
-    description: "Built a base in DSA through consistent, deliberate practice.",
+    description: "Built through steady practice.",
   },
   {
     title: "Built StaySpot",
@@ -73,19 +73,19 @@ export const journeySteps: JourneyStep[] = [
   },
   {
     title: "Built MediCare Scheduler",
-    description: "A scheduling application.",
+    description: "A scheduling app.",
   },
   {
     title: "Built Workspace Nexus",
-    description: "A collaborative document platform with multi-workspace architecture.",
+    description: "Collaborative docs with multiple workspaces.",
   },
   {
     title: "Built NexusFlow",
-    description: "An AI-powered developer intelligence platform with a custom Java concurrency engine.",
+    description: "AI developer insights on a custom Java engine.",
   },
   {
     title: "Built HourGlass",
-    description: "An intelligent productivity platform with Google Calendar sync.",
+    description: "Productivity app with Google Calendar sync.",
   },
   {
     title: "Built DigitalHub",
