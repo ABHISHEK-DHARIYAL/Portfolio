@@ -133,7 +133,7 @@ function findProjects(q: string, tokens: string[]) {
 
 const A = {
   projects: { kind: "scroll", label: "View projects", target: "projects" } as ChatAction,
-  skills: { kind: "scroll", label: "See skills", target: "skills" } as ChatAction,
+  skills: { kind: "link", label: "See skills", href: "/skills" } as ChatAction,
   contact: { kind: "scroll", label: "Contact form", target: "contact" } as ChatAction,
   journey: { kind: "scroll", label: "See journey", target: "journey" } as ChatAction,
   about: { kind: "scroll", label: "About section", target: "about" } as ChatAction,

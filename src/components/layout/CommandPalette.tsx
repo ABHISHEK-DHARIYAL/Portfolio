@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Home,
@@ -25,6 +26,7 @@ type Command = {
 export default function CommandPalette() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -46,7 +48,11 @@ export default function CommandPalette() {
   const commands: Command[] = [
     { label: "Home", hint: "Go to top", icon: Home, action: goTo("hero") },
     { label: "About", hint: "My background", icon: User, action: goTo("about") },
-    { label: "Skills", hint: "Tech I work with", icon: Sparkles, action: goTo("skills") },
+    { label: "Skills", hint: "Tech I work with", icon: Sparkles, action: () => {
+        router.push("/skills");
+        setOpen(false);
+      },
+    },
     { label: "Projects", hint: "Featured work", icon: FolderGit2, action: goTo("projects") },
     { label: "Journey", hint: "How it started", icon: Briefcase, action: goTo("journey") },
     { label: "Achievements", hint: "Milestones along the way", icon: Award, action: goTo("achievements") },

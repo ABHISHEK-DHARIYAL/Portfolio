@@ -1,8 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Code2, Database, LayoutDashboard, Server, Wrench, Layers } from "lucide-react";
+import { ArrowLeft, Code2, Database, LayoutDashboard, Server, Wrench, Layers } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { skillCategories, skills, type Skill } from "@/data/skills";
 import GlassCard from "@/components/ui/GlassCard";
@@ -112,7 +113,7 @@ function SkillCard({ skill, isLight }: { skill: Skill; isLight: boolean }) {
   );
 }
 
-export default function Skills() {
+export default function Skills({ standalone = false }: { standalone?: boolean }) {
   const { theme } = useTheme();
   const isLight = theme === "light";
   const [filter, setFilter] = useState<Filter>("All");
@@ -134,6 +135,14 @@ export default function Skills() {
   return (
     <section id="skills" className="relative overflow-hidden px-6 py-32">
       <div className="mx-auto max-w-6xl">
+        {standalone && (
+          <Link
+            href="/#projects"
+            className="mb-10 inline-flex items-center gap-2 font-mono text-xs text-white/50 transition hover:text-white"
+          >
+            <ArrowLeft className="h-3.5 w-3.5" /> Back to projects
+          </Link>
+        )}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -141,9 +150,15 @@ export default function Skills() {
           className="mb-12 text-center"
         >
           <p className="mb-3 font-mono text-sm text-primary">Skills</p>
-          <h2 className="font-display text-3xl font-semibold text-white sm:text-4xl">
-            The tools I build with
-          </h2>
+          {standalone ? (
+            <h1 className="font-display text-3xl font-semibold text-white sm:text-4xl">
+              The tools I build with
+            </h1>
+          ) : (
+            <h2 className="font-display text-3xl font-semibold text-white sm:text-4xl">
+              The tools I build with
+            </h2>
+          )}
           <p className="mx-auto mt-4 max-w-2xl font-body text-white/60">
             {skills.length} technologies across {skillCategories.length} areas. Filter by category
             to see what each one is used for and which projects it powers.

@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
+import { ArrowRight, Sparkles } from "lucide-react";
 import type { Project } from "@/data/projects";
 import ProjectCard from "./ProjectCard";
 import Carousel from "@/components/ui/Carousel";
@@ -60,6 +62,18 @@ export default function Projects() {
             </div>
           ))}
         </Carousel>
+
+        <div className="mt-12 flex justify-center">
+          <Link
+            href="/skills"
+            data-cursor="pointer"
+            className="group/btn inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-6 py-3 font-mono text-sm text-white transition hover:border-primary hover:bg-primary/20"
+          >
+            <Sparkles className="h-4 w-4 text-primary" />
+            Skills
+            <ArrowRight className="h-4 w-4 transition group-hover/btn:translate-x-0.5" />
+          </Link>
+        </div>
       </div>
     </section>
   );
