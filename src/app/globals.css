@@ -8,7 +8,7 @@
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #7c3aed44 transparent;
+  scrollbar-color: #64ffda44 transparent;
 }
 
 body {
@@ -16,8 +16,8 @@ body {
 }
 
 ::selection {
-  background: #7c3aed55;
-  color: #fff;
+  background: #233554;
+  color: #ccd6f6;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -32,7 +32,7 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid #7c3aed;
+  outline: 2px solid #64ffda;
   outline-offset: 3px;
 }
 
@@ -74,92 +74,92 @@ body {
 
 /* Page background */
 [data-theme="light"] .bg-base {
-  background-color: #fcfcff;
+  background-color: #f6f9fc;
 }
 [data-theme="light"] .bg-base\/80 {
-  background-color: rgb(252 252 255 / 0.82);
+  background-color: rgb(246 249 252 / 0.82);
 }
 [data-theme="light"] .bg-base\/95 {
-  background-color: rgb(252 252 255 / 0.96);
+  background-color: rgb(246 249 252 / 0.96);
 }
 
 /* Primary text color and its opacity steps (text-white/NN) */
 [data-theme="light"] .text-white {
-  color: #0f0d1a;
+  color: #0a192f;
 }
 [data-theme="light"] .text-white\/30 {
-  color: rgb(20 18 31 / 0.48);
+  color: rgb(10 25 47 / 0.48);
 }
 [data-theme="light"] .text-white\/40 {
-  color: rgb(20 18 31 / 0.58);
+  color: rgb(10 25 47 / 0.58);
 }
 [data-theme="light"] .text-white\/50 {
-  color: rgb(20 18 31 / 0.66);
+  color: rgb(10 25 47 / 0.66);
 }
 [data-theme="light"] .text-white\/60 {
-  color: rgb(20 18 31 / 0.74);
+  color: rgb(10 25 47 / 0.74);
 }
 [data-theme="light"] .text-white\/70 {
-  color: rgb(20 18 31 / 0.80);
+  color: rgb(10 25 47 / 0.80);
 }
 [data-theme="light"] .text-white\/80 {
-  color: rgb(20 18 31 / 0.86);
+  color: rgb(10 25 47 / 0.86);
 }
 [data-theme="light"] .text-white\/90 {
-  color: rgb(20 18 31 / 0.9);
+  color: rgb(10 25 47 / 0.9);
 }
 
 /* Borders (border-white/NN) */
 [data-theme="light"] .border-white\/10 {
-  border-color: rgb(20 18 31 / 0.14);
+  border-color: rgb(10 25 47 / 0.14);
 }
 [data-theme="light"] .border-white\/15 {
-  border-color: rgb(20 18 31 / 0.16);
+  border-color: rgb(10 25 47 / 0.16);
 }
 [data-theme="light"] .border-white\/20 {
-  border-color: rgb(20 18 31 / 0.2);
+  border-color: rgb(10 25 47 / 0.2);
 }
 [data-theme="light"] .border-white\/40 {
-  border-color: rgb(20 18 31 / 0.35);
+  border-color: rgb(10 25 47 / 0.35);
 }
 
 /* Card / surface fills (bg-white/NN and bg-white/[0.0N]) */
 [data-theme="light"] .bg-white\/5 {
-  background-color: rgb(20 18 31 / 0.04);
+  background-color: rgb(10 25 47 / 0.04);
 }
 [data-theme="light"] .bg-white\/10 {
-  background-color: rgb(20 18 31 / 0.06);
+  background-color: rgb(10 25 47 / 0.06);
 }
 [data-theme="light"] .bg-white\/15 {
-  background-color: rgb(20 18 31 / 0.08);
+  background-color: rgb(10 25 47 / 0.08);
 }
 [data-theme="light"] .bg-white\/30 {
-  background-color: rgb(20 18 31 / 0.15);
+  background-color: rgb(10 25 47 / 0.15);
 }
 [data-theme="light"] .bg-white\/50 {
-  background-color: rgb(20 18 31 / 0.25);
+  background-color: rgb(10 25 47 / 0.25);
 }
 [data-theme="light"] .bg-white\/\[0\.02\] {
-  background-color: rgb(20 18 31 / 0.02);
+  background-color: rgb(10 25 47 / 0.02);
 }
 [data-theme="light"] .bg-white\/\[0\.03\] {
-  background-color: rgb(20 18 31 / 0.03);
+  background-color: rgb(10 25 47 / 0.03);
 }
 [data-theme="light"] .bg-white\/\[0\.04\] {
-  background-color: rgb(20 18 31 / 0.04);
+  background-color: rgb(10 25 47 / 0.04);
 }
 [data-theme="light"] .bg-white\/\[0\.05\] {
-  background-color: rgb(20 18 31 / 0.05);
+  background-color: rgb(10 25 47 / 0.05);
 }
 [data-theme="light"] .bg-white\/\[0\.06\] {
-  background-color: rgb(20 18 31 / 0.06);
+  background-color: rgb(10 25 47 / 0.06);
 }
 
 /* Text selection reads fine with the violet accent on a light background,
    but the foreground color (white) would vanish, so give it a swap too. */
 [data-theme="light"] ::selection {
-  background: #7c3aed33;
-  color: #14121f;
+  background: #0d948833;
+  color: #0a192f;
 }
 
 /* ============================================================================
@@ -174,20 +174,20 @@ body {
 [data-theme="light"] .bg-white\/\[0\.03\] {
   background-color: #ffffff;
   box-shadow:
-    0 1px 2px rgb(20 18 31 / 0.05),
-    0 8px 24px -8px rgb(76 29 149 / 0.12);
+    0 1px 2px rgb(10 25 47 / 0.05),
+    0 8px 24px -8px rgb(10 25 47 / 0.12);
 }
 [data-theme="light"] .bg-white\/\[0\.03\]:hover {
   box-shadow:
-    0 2px 4px rgb(20 18 31 / 0.06),
-    0 16px 36px -10px rgb(76 29 149 / 0.22);
+    0 2px 4px rgb(10 25 47 / 0.06),
+    0 16px 36px -10px rgb(10 25 47 / 0.22);
 }
 [data-theme="light"] .bg-white\/\[0\.04\],
 [data-theme="light"] .bg-white\/\[0\.05\] {
-  background-color: rgb(124 58 237 / 0.06);
+  background-color: rgb(13 148 136 / 0.06);
 }
 [data-theme="light"] .bg-black\/40 {
-  background-color: rgb(20 18 31 / 0.06);
+  background-color: rgb(10 25 47 / 0.06);
 }
 
 /* White text that sits ON a colored fill stays white */
@@ -200,21 +200,21 @@ body {
 
 /* Brand text: darker shades for contrast on white */
 [data-theme="light"] .text-primary {
-  color: #6d28d9;
+  color: #0f766e;
 }
 [data-theme="light"] .text-accent {
-  color: #1d4ed8;
+  color: #0369a1;
 }
 [data-theme="light"] .text-emerald-400 {
-  color: #047857;
+  color: #0f766e;
 }
 
 /* Soft glow shadows read as muddy smudges on white — tone them down */
 [data-theme="light"] .shadow-glow {
-  box-shadow: 0 8px 24px -6px rgb(124 58 237 / 0.4);
+  box-shadow: 0 8px 24px -6px rgb(13 148 136 / 0.4);
 }
 [data-theme="light"] .hover\:shadow-glow-accent:hover {
-  box-shadow: 0 10px 28px -6px rgb(59 130 246 / 0.45);
+  box-shadow: 0 10px 28px -6px rgb(3 105 161 / 0.45);
 }
 
 /* ============================================================================
@@ -228,11 +228,11 @@ body {
  * ==========================================================================*/
 [data-theme="light"] .theme-lock-dark {
   background-color: rgb(255 255 255 / 0.97);
-  border-color: rgb(20 18 31 / 0.12);
+  border-color: rgb(10 25 47 / 0.12);
   box-shadow:
-    0 24px 60px -16px rgb(76 29 149 / 0.28),
-    0 4px 12px rgb(20 18 31 / 0.08);
-  color: #0f0d1a;
+    0 24px 60px -16px rgb(10 25 47 / 0.28),
+    0 4px 12px rgb(10 25 47 / 0.08);
+  color: #0a192f;
 }
 
 /* Dim-scrim behind modals: softer on a light page */
@@ -245,52 +245,52 @@ body {
 
 /* Terminal blinking cursor + toggle knobs (bg-white on light = invisible) */
 [data-theme="light"] .animate-blink.bg-white {
-  background-color: #6d28d9;
+  background-color: #0f766e;
 }
 [data-theme="light"] button[role="switch"] > .bg-white {
   background-color: #ffffff;
-  box-shadow: 0 1px 3px rgb(20 18 31 / 0.35);
+  box-shadow: 0 1px 3px rgb(10 25 47 / 0.35);
 }
 [data-theme="light"] button[role="switch"].bg-white\/15 {
-  background-color: rgb(20 18 31 / 0.22);
+  background-color: rgb(10 25 47 / 0.22);
 }
 
 /* Chat bubbles: bot = soft lavender, input = light grey field */
 [data-theme="light"] .theme-lock-dark .bg-white\/\[0\.06\] {
-  background-color: rgb(124 58 237 / 0.08);
+  background-color: rgb(13 148 136 / 0.08);
 }
 [data-theme="light"] .theme-lock-dark .bg-white\/\[0\.05\] {
-  background-color: rgb(20 18 31 / 0.06);
+  background-color: rgb(10 25 47 / 0.06);
 }
 
 /* Variant classes the base light rules never covered */
 [data-theme="light"] .hover\:text-white:hover {
-  color: #0f0d1a;
+  color: #0a192f;
 }
 [data-theme="light"] .hover\:text-white\/60:hover {
-  color: rgb(20 18 31 / 0.74);
+  color: rgb(10 25 47 / 0.74);
 }
 [data-theme="light"] .placeholder\:text-white\/30::placeholder {
-  color: rgb(20 18 31 / 0.45);
+  color: rgb(10 25 47 / 0.45);
 }
 [data-theme="light"] .hover\:bg-white\/5:hover,
 [data-theme="light"] .hover\:bg-white\/\[0\.02\]:hover {
-  background-color: rgb(124 58 237 / 0.06);
+  background-color: rgb(13 148 136 / 0.06);
 }
 [data-theme="light"] .hover\:bg-white\/10:hover,
 [data-theme="light"] .hover\:bg-white\/\[0\.12\]:hover {
-  background-color: rgb(124 58 237 / 0.11);
+  background-color: rgb(13 148 136 / 0.11);
 }
 [data-theme="light"] .hover\:bg-white\/40:hover {
-  background-color: rgb(20 18 31 / 0.2);
+  background-color: rgb(10 25 47 / 0.2);
 }
 [data-theme="light"] .hover\:border-white\/25:hover,
 [data-theme="light"] .hover\:border-white\/40:hover,
 [data-theme="light"] .group:hover .group-hover\:border-white\/20 {
-  border-color: rgb(124 58 237 / 0.5);
+  border-color: rgb(13 148 136 / 0.5);
 }
 [data-theme="light"] .via-white\/10 {
-  --tw-gradient-via: rgb(20 18 31 / 0.12);
+  --tw-gradient-via: rgb(10 25 47 / 0.12);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to);
 }
 
@@ -358,72 +358,103 @@ body {
   background-color: rgb(255 255 255 / 0.05);
 }
 [data-theme="light"] .zui-stage .text-primary {
-  color: #A78BFA;
+  color: #64ffda;
 }
 [data-theme="light"] .zui-stage .border-primary\/30 {
-  border-color: rgb(124 58 237 / 0.3);
+  border-color: rgb(100 255 218 / 0.3);
 }
 
 /* ============================================================================
  * READABILITY FIXES (both themes)
  * ----------------------------------------------------------------------------
  * LIGHT: these opacity steps were used in components (mostly the Stories page)
- * but had no light-theme rule, so they stayed pure white on a white page.
+ * but had no light-theme rule, so they stayed pure white on a light page.
  * DARK: the dimmest steps (white/25-50) and the violet brand color were too
  * low-contrast on the near-black background, so they're lifted a little.
  * ==========================================================================*/
 [data-theme="light"] .text-white\/25 {
-  color: rgb(20 18 31 / 0.5);
+  color: rgb(10 25 47 / 0.5);
 }
 [data-theme="light"] .text-white\/55 {
-  color: rgb(20 18 31 / 0.7);
+  color: rgb(10 25 47 / 0.7);
 }
 [data-theme="light"] .text-white\/65 {
-  color: rgb(20 18 31 / 0.78);
+  color: rgb(10 25 47 / 0.78);
 }
 [data-theme="light"] .group:hover .group-hover\:text-white\/80 {
-  color: rgb(20 18 31 / 0.9);
+  color: rgb(10 25 47 / 0.9);
 }
 [data-theme="light"] .hover\:border-white\/30:hover {
-  border-color: rgb(124 58 237 / 0.5);
+  border-color: rgb(13 148 136 / 0.5);
 }
 [data-theme="light"] .bg-white\/20 {
-  background-color: rgb(20 18 31 / 0.18);
+  background-color: rgb(10 25 47 / 0.18);
 }
 [data-theme="light"] .bg-white\/80 {
-  background-color: rgb(20 18 31 / 0.75);
+  background-color: rgb(10 25 47 / 0.75);
 }
 [data-theme="light"] .divide-white\/5 > :not([hidden]) ~ :not([hidden]) {
-  border-color: rgb(20 18 31 / 0.1);
+  border-color: rgb(10 25 47 / 0.1);
 }
 
 /* ============================================================================
- * TEXT COLOR RULE: dark theme = pure white text, light theme = pure black text
- * Applies to every text-white/NN step, brand-colored text and accent-colored
- * text (story/project taglines, icons). Text on colored fills (gradient
- * buttons, accent tabs) stays white in both themes. The always-dark Zui stage
- * keeps white text.
+ * TEXT COLORS (navy + green theme)
+ * DARK : headings / main text = light slate-blue, secondary text = slate,
+ *        accent text = green (primary) and sky blue (accent).
+ * LIGHT: main text = deep navy, accent text = darker teal / blue so it
+ *        stays readable on a light background.
+ * Text sitting on green/blue fills (gradient buttons, badges) is navy in
+ * both themes so it never disappears. The always-dark Zui stage keeps
+ * light text.
  * ==========================================================================*/
-html:not([data-theme="light"]) :is(.text-white\/25,.text-white\/30,.text-white\/40,.text-white\/50,.text-white\/55,.text-white\/60,.text-white\/65,.text-white\/70,.text-white\/80,.text-white\/90,.text-primary,.text-accent,.story-accent-text,.hover\:text-white\/60:hover,.group:hover .group-hover\:text-white\/80) {
-  color: #ffffff;
+html:not([data-theme="light"]) .text-white {
+  color: #ccd6f6;
+}
+html:not([data-theme="light"]) :is(.text-white\/90,.text-white\/80,.text-white\/70,.text-white\/65,.text-white\/60) {
+  color: #a8b2d1;
+}
+html:not([data-theme="light"]) :is(.text-white\/55,.text-white\/50,.text-white\/40,.text-white\/30,.text-white\/25) {
+  color: #8892b0;
+}
+html:not([data-theme="light"]) :is(.text-primary,.story-accent-text) {
+  color: #64ffda;
+}
+html:not([data-theme="light"]) .text-accent {
+  color: #57cbff;
+}
+html:not([data-theme="light"]) :is(.hover\:text-white\/60:hover,.group:hover .group-hover\:text-white\/80) {
+  color: #64ffda;
 }
 html:not([data-theme="light"]) .placeholder\:text-white\/30::placeholder {
-  color: rgb(255 255 255 / 0.6);
+  color: #8892b0;
 }
 
-[data-theme="light"] :is(.text-white,.text-white\/25,.text-white\/30,.text-white\/40,.text-white\/50,.text-white\/55,.text-white\/60,.text-white\/65,.text-white\/70,.text-white\/80,.text-white\/90,.text-primary,.text-accent,.story-accent-text,.hover\:text-white:hover,.hover\:text-white\/60:hover,.group:hover .group-hover\:text-white\/80) {
-  color: #000000;
+[data-theme="light"] :is(.text-white,.text-white\/25,.text-white\/30,.text-white\/40,.text-white\/50,.text-white\/55,.text-white\/60,.text-white\/65,.text-white\/70,.text-white\/80,.text-white\/90,.hover\:text-white:hover,.hover\:text-white\/60:hover,.group:hover .group-hover\:text-white\/80) {
+  color: #0a192f;
+}
+[data-theme="light"] :is(.text-primary,.story-accent-text) {
+  color: #0f766e;
+}
+[data-theme="light"] .text-accent {
+  color: #0369a1;
 }
 [data-theme="light"] .placeholder\:text-white\/30::placeholder {
-  color: rgb(0 0 0 / 0.55);
+  color: rgb(10 25 47 / 0.55);
 }
 [data-theme="light"] body {
-  color: #000000;
+  color: #0a192f;
 }
 
-/* Text sitting on colored fills stays white */
-[data-theme="light"] :is(.bg-gradient-brand, .bg-primary, .bg-accent).text-white,
-[data-theme="light"] :is(.bg-gradient-brand, .bg-primary, .bg-accent) .text-white,
-[data-theme="light"] .zui-stage :is(.text-white,.text-white\/25,.text-white\/40,.text-white\/60,.text-white\/70,.text-primary) {
-  color: #ffffff;
+/* Text on colored fills = navy, in both themes */
+:is(.bg-gradient-brand, .bg-primary, .bg-accent),
+:is(.bg-gradient-brand, .bg-primary, .bg-accent) :is(.text-white, svg) {
+  color: #0a192f !important;
+}
+
+/* Always-dark Zui stage keeps light text */
+[data-theme="light"] .zui-stage :is(.text-white,.text-white\/25,.text-white\/40,.text-white\/60,.text-white\/70) {
+  color: #ccd6f6;
+}
+[data-theme="light"] .zui-stage .text-primary {
+  color: #64ffda;
 }

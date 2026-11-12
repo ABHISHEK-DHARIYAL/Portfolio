@@ -5,10 +5,10 @@ export const runtime = "nodejs";
 const NOT_FOUND_HTML = `<!doctype html>
 <html lang="en">
 <head><meta charset="utf-8"><title>Resume not available</title></head>
-<body style="background:#050816;color:#fff;font-family:-apple-system,Segoe UI,sans-serif;
+<body style="background:#0a192f;color:#ccd6f6;font-family:-apple-system,Segoe UI,sans-serif;
 display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;">
   <div style="text-align:center;max-width:22rem;padding:1.5rem;">
-    <p style="font:600 12px/1 monospace;letter-spacing:.08em;text-transform:uppercase;color:#7C3AED;margin:0 0 8px;">Portfolio</p>
+    <p style="font:600 12px/1 monospace;letter-spacing:.08em;text-transform:uppercase;color:#64ffda;margin:0 0 8px;">Portfolio</p>
     <h1 style="font-size:20px;margin:0 0 8px;">No resume available yet</h1>
     <p style="color:rgba(255,255,255,.6);font-size:14px;margin:0;">Please check back soon, or reach out directly through the contact form.</p>
   </div>

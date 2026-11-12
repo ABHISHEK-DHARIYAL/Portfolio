@@ -29,7 +29,7 @@ function ConfettiBurst() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const colors = ["#7C3AED", "#3B82F6", "#22D3EE", "#F472B6", "#FACC15"];
+    const colors = ["#64ffda", "#57cbff", "#22D3EE", "#F472B6", "#FACC15"];
     const pieces = Array.from({ length: 140 }, () => ({
       x: Math.random() * canvas.width,
       y: -20 - Math.random() * canvas.height * 0.5,
@@ -77,7 +77,7 @@ export default function EasterEggs() {
     // hidden developer console message
     console.log(
       "%cLooking for something? Try the Konami code. ↑↑↓↓←→←→ba",
-      "color:#7C3AED;font-size:13px;font-weight:600;"
+      "color:#64ffda;font-size:13px;font-weight:600;"
     );
   }, []);
 
@@ -136,7 +136,7 @@ function MatrixRain() {
 
     let raf = 0;
     const draw = () => {
-      ctx.fillStyle = "rgba(5,8,22,0.15)";
+      ctx.fillStyle = "rgba(10,25,47,0.15)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "#22c55e";
       ctx.font = `${fontSize}px monospace`;

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Plus, X, Loader2 } from "lucide-react";
 import type { ProjectFormValues } from "@/lib/project-schema";
 
-const ACCENT_PRESETS = ["#7C3AED", "#3B82F6", "#22D3EE", "#F472B6", "#FACC15"];
+const ACCENT_PRESETS = ["#64ffda", "#57cbff", "#22D3EE", "#F472B6", "#FACC15"];
 
 const EMPTY_FORM: ProjectFormValues = {
   slug: "",
@@ -15,7 +15,7 @@ const EMPTY_FORM: ProjectFormValues = {
   stack: [],
   liveUrl: "",
   githubUrl: "",
-  accent: "#7C3AED",
+  accent: "#64ffda",
   architecture: [],
   challenges: [],
   highlights: [],

@@ -19,7 +19,7 @@ export function platformAbbr(platform: string, shortLabel?: string): string {
 }
 
 /** A stable color per platform name, so the same platform always looks the same. */
-const PALETTE = ["#7C3AED", "#3B82F6", "#22D3EE", "#F472B6", "#FACC15", "#34D399", "#FB923C"];
+const PALETTE = ["#64ffda", "#57cbff", "#22D3EE", "#F472B6", "#FACC15", "#34D399", "#FB923C"];
 
 export function platformColor(platform: string): string {
   let hash = 0;

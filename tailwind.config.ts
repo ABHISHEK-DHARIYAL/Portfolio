@@ -6,9 +6,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#7C3AED",
-        accent: "#3B82F6",
-        base: "#050816",
+        primary: "#64ffda",
+        accent: "#57cbff",
+        base: "#0a192f",
         surface: "rgba(255,255,255,0.04)",
       },
       fontFamily: {
@@ -18,12 +18,12 @@ const config: Config = {
       },
       backgroundImage: {
         "grid-glow":
-          "radial-gradient(circle at 50% 0%, rgba(124,58,237,0.25), transparent 60%)",
-        "gradient-brand": "linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%)",
+          "radial-gradient(circle at 50% 0%, rgba(100,255,218,0.14), transparent 60%)",
+        "gradient-brand": "linear-gradient(135deg, #64ffda 0%, #57cbff 100%)",
       },
       boxShadow: {
-        glow: "0 0 40px rgba(124,58,237,0.35)",
-        "glow-accent": "0 0 40px rgba(59,130,246,0.35)",
+        glow: "0 0 40px rgba(100,255,218,0.25)",
+        "glow-accent": "0 0 40px rgba(87,203,255,0.25)",
       },
       keyframes: {
         float: {

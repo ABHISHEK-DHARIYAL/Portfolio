@@ -60,7 +60,7 @@ export default function ProjectCard({
           className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
           style={{
             padding: 1,
-            background: `linear-gradient(120deg, ${project.accent}, transparent 40%, #3B82F6)`,
+            background: `linear-gradient(120deg, ${project.accent}, transparent 40%, #57cbff)`,
             WebkitMask:
               "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
             WebkitMaskComposite: "xor",

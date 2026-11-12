@@ -143,8 +143,8 @@ export default function ZuiFunMode({ open, onClose }: { open: boolean; onClose: 
               ))}
               <defs>
                 <linearGradient id="zui-bone-gradient" gradientUnits="userSpaceOnUse" x1="100" y1="46" x2="100" y2="372">
-                  <stop offset="0%" stopColor="#7C3AED" />
-                  <stop offset="100%" stopColor="#3B82F6" />
+                  <stop offset="0%" stopColor="#64ffda" />
+                  <stop offset="100%" stopColor="#57cbff" />
                 </linearGradient>
               </defs>
 
@@ -158,7 +158,7 @@ export default function ZuiFunMode({ open, onClose }: { open: boolean; onClose: 
                       cx={n.x}
                       cy={n.y}
                       r={10}
-                      fill="#7C3AED"
+                      fill="#64ffda"
                       opacity={0.18}
                       animate={{ r: [10, 15, 10], opacity: [0.15, 0.3, 0.15] }}
                       transition={{ repeat: Infinity, duration: 2.4, delay: NODES.indexOf(n) * 0.15 }}
@@ -167,7 +167,7 @@ export default function ZuiFunMode({ open, onClose }: { open: boolean; onClose: 
                       cx={n.x}
                       cy={n.y}
                       r={isHovered ? 8 : 6}
-                      fill={isHovered ? "#A78BFA" : "#7C3AED"}
+                      fill={isHovered ? "#a8ffee" : "#64ffda"}
                       filter="url(#zui-glow)"
                       style={{ transition: "r 150ms ease, fill 150ms ease" }}
                     />

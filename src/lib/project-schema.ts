@@ -34,8 +34,8 @@ export const projectSchema = z.object({
   accent: z
     .string()
     .trim()
-    .regex(/^#[0-9A-Fa-f]{6}$/, "Accent must be a hex color like #7C3AED")
-    .default("#7C3AED"),
+    .regex(/^#[0-9A-Fa-f]{6}$/, "Accent must be a hex color like #64ffda")
+    .default("#64ffda"),
   architecture: stringListSchema.default([]),
   challenges: z.array(challengeSchema).max(20).default([]),
   highlights: stringListSchema.default([]),

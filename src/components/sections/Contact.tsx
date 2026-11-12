@@ -77,19 +77,19 @@ export default function Contact() {
           <div className="space-y-4">
             {SOCIALS.map((s) => (
               <a key={s.label} href={s.href} target="_blank" rel="noreferrer" data-cursor="pointer">
-                <GlassCard className="flex items-center gap-3 p-4" glow="#7C3AED">
+                <GlassCard className="flex items-center gap-3 p-4" glow="#64ffda">
                   <s.icon className="h-4 w-4 text-primary" />
                   <span className="font-body text-sm text-white/80">{s.label}</span>
                 </GlassCard>
               </a>
             ))}
-            <GlassCard className="flex items-center gap-3 p-4" glow="#3B82F6">
+            <GlassCard className="flex items-center gap-3 p-4" glow="#57cbff">
               <MapPin className="h-4 w-4 text-accent" />
               <span className="font-body text-sm text-white/80">Ahmedabad, Gujarat, India</span>
             </GlassCard>
           </div>
 
-          <GlassCard className="relative overflow-hidden p-6 sm:p-8" glow="#3B82F6">
+          <GlassCard className="relative overflow-hidden p-6 sm:p-8" glow="#57cbff">
             <form onSubmit={handleSubmit} className="space-y-4" noValidate>
               {/* Honeypot — hidden from real visitors (off-screen, not just
                   display:none, since some bots skip display:none fields).

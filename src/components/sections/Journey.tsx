@@ -40,7 +40,7 @@ export default function Journey() {
                   <span className="absolute -left-[3.1rem] top-1 flex h-7 w-7 items-center justify-center rounded-full bg-gradient-brand shadow-glow sm:-left-[4.1rem]">
                     <Icon className="h-3.5 w-3.5 text-white" />
                   </span>
-                  <GlassCard className="p-4" glow="#3B82F6">
+                  <GlassCard className="p-4" glow="#57cbff">
                     <div className="flex flex-wrap items-baseline gap-2">
                       <h3 className="font-display text-sm font-semibold text-white">
                         {step.title}

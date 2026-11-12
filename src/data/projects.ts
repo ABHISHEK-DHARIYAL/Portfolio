@@ -41,7 +41,7 @@ export const projects: Project[] = [
     stack: ["Java", "React", "Node", "Express", "MySQL", "Tailwind", "Gemini API", "GitHub API"],
     githubUrl: "https://github.com/ABHISHEK-DHARIYAL/NexusFlow",
     // Live demo intentionally omitted — not available yet.
-    accent: "#7C3AED",
+    accent: "#64ffda",
     architecture: [],
     challenges: [],
     highlights: [],
@@ -64,7 +64,7 @@ export const projects: Project[] = [
     stack: ["Next.js", "TypeScript", "Firebase", "Node", "Express", "Tailwind"],
     githubUrl: "https://github.com/ABHISHEK-DHARIYAL/WorkSpace_Nexus",
     liveUrl: "https://work-space-nexus.vercel.app/",
-    accent: "#3B82F6",
+    accent: "#57cbff",
     architecture: [],
     challenges: [],
     highlights: [],

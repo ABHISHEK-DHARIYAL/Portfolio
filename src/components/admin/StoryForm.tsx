@@ -7,7 +7,7 @@ import { ListEditor, TextField } from "@/components/admin/ProjectForm";
 
 export type ProjectOption = { slug: string; title: string; tagline: string; accent: string };
 
-const ACCENT_PRESETS = ["#7C3AED", "#3B82F6", "#22D3EE", "#F472B6", "#FACC15"];
+const ACCENT_PRESETS = ["#64ffda", "#57cbff", "#22D3EE", "#F472B6", "#FACC15"];
 
 const EMPTY_FORM: StoryFormValues = {
   slug: "",
@@ -347,7 +347,7 @@ export default function StoryForm({
           <input
             value={form.accent ?? ""}
             onChange={(e) => set("accent", e.target.value)}
-            placeholder="#7C3AED"
+            placeholder="#64ffda"
             className="w-28 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-1.5 font-mono text-xs text-white focus:border-primary/60 focus:outline-none"
           />
           {form.accent && (

@@ -61,7 +61,7 @@ export default function OtherProjects() {
               animate={{ opacity: 1, y: 0 }}
               className="h-full"
             >
-              <GlassCard className="flex h-full items-center justify-between gap-4 p-5" glow="#7C3AED">
+              <GlassCard className="flex h-full items-center justify-between gap-4 p-5" glow="#64ffda">
                 <span className="font-body text-sm text-white/80">{project.name}</span>
                 <div className="flex shrink-0 items-center gap-2">
                   {project.websiteUrl && (

@@ -39,7 +39,7 @@ export const storySchema = z.object({
   accent: z
     .string()
     .trim()
-    .regex(/^#[0-9A-Fa-f]{6}$/, "Accent must be a hex color like #7C3AED")
+    .regex(/^#[0-9A-Fa-f]{6}$/, "Accent must be a hex color like #64ffda")
     .optional()
     .or(z.literal("")),
   idea: z.string().trim().max(4000).default(""),

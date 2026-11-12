@@ -38,7 +38,7 @@ export default function About() {
                 className="relative"
               >
                 <span className="absolute -left-[3.35rem] top-6 hidden h-2.5 w-2.5 rounded-full bg-primary shadow-glow sm:block" />
-                <GlassCard className="p-6" glow="#3B82F6">
+                <GlassCard className="p-6" glow="#57cbff">
                   <h3 className="font-display text-lg font-semibold text-white">
                     {item.title}
                   </h3>

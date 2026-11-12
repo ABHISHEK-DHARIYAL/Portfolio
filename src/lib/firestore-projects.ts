@@ -27,7 +27,7 @@ function toStoredProject(id: string, data: FirebaseFirestore.DocumentData): Stor
     stack: data.stack ?? [],
     liveUrl: data.liveUrl ?? "",
     githubUrl: data.githubUrl ?? "",
-    accent: data.accent ?? "#7C3AED",
+    accent: data.accent ?? "#64ffda",
     architecture: data.architecture ?? [],
     challenges: data.challenges ?? [],
     highlights: data.highlights ?? [],

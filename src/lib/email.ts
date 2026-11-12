@@ -66,10 +66,10 @@ function buildHtmlBody(data: ContactEmailData): string {
     </tr>`;
 
   return `
-  <div style="background:#050816;padding:32px 16px;font-family:-apple-system,Segoe UI,sans-serif;">
+  <div style="background:#0a192f;padding:32px 16px;font-family:-apple-system,Segoe UI,sans-serif;">
     <div style="max-width:520px;margin:0 auto;background:#0a0f24;border:1px solid #22263f;border-radius:16px;padding:28px;">
-      <p style="margin:0 0 4px;font:600 12px/1 monospace;letter-spacing:.08em;text-transform:uppercase;background:linear-gradient(135deg,#7C3AED,#3B82F6);-webkit-background-clip:text;background-clip:text;color:#7C3AED;">Portfolio</p>
-      <h1 style="margin:0 0 20px;font-size:20px;color:#ffffff;">New Portfolio Contact</h1>
+      <p style="margin:0 0 4px;font:600 12px/1 monospace;letter-spacing:.08em;text-transform:uppercase;background:linear-gradient(135deg,#64ffda,#57cbff);-webkit-background-clip:text;background-clip:text;color:#64ffda;">Portfolio</p>
+      <h1 style="margin:0 0 20px;font-size:20px;color:#ccd6f6fff;">New Portfolio Contact</h1>
       <table style="width:100%;border-collapse:collapse;">
         ${row("Name", data.name)}
         ${row("Email", data.email)}

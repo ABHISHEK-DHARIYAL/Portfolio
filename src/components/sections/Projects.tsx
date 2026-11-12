@@ -6,6 +6,7 @@ import type { Project } from "@/data/projects";
 import ProjectCard from "./ProjectCard";
 import ProjectModal from "./ProjectModal";
 import Carousel from "@/components/ui/Carousel";
+import HexMark from "@/components/layout/HexMark";
 
 export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -48,7 +49,10 @@ export default function Projects() {
         </motion.div>
 
         {loading && (
-          <p className="text-center font-mono text-xs text-white/40">Loading projects…</p>
+          <div className="flex flex-col items-center gap-3">
+            <HexMark size={44} mode="pulse" />
+            <p className="text-center font-mono text-xs text-white/40">Loading projects…</p>
+          </div>
         )}
 
         <Carousel itemsPerView={{ base: 1, md: 1, lg: 2 }} autoPlay autoPlayInterval={6000} gap={32}>

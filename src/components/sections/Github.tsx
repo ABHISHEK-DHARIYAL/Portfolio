@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Github, Star, GitFork, Users, ExternalLink } from "lucide-react";
 import GlassCard from "@/components/ui/GlassCard";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
+import HexMark from "@/components/layout/HexMark";
 
 const USERNAME = process.env.NEXT_PUBLIC_GITHUB_USERNAME ?? "ABHISHEK-DHARIYAL";
 const PROFILE_URL = `https://github.com/${USERNAME}`;
@@ -97,11 +98,14 @@ export default function GithubSection() {
         </motion.div>
 
         {status === "loading" && (
-          <p className="text-center font-mono text-xs text-white/40">Fetching live GitHub data…</p>
+          <div className="flex flex-col items-center gap-3">
+            <HexMark size={44} mode="pulse" />
+            <p className="text-center font-mono text-xs text-white/40">Fetching live GitHub data…</p>
+          </div>
         )}
 
         {status === "error" && (
-          <GlassCard className="mx-auto max-w-md p-6 text-center" glow="#7C3AED">
+          <GlassCard className="mx-auto max-w-md p-6 text-center" glow="#64ffda">
             <p className="font-body text-sm text-white/60">
               Live GitHub stats couldn&apos;t be fetched right now (rate limits or
               network). Rather than show placeholder numbers, here&apos;s the profile
@@ -127,7 +131,7 @@ export default function GithubSection() {
             </div>
 
             {topLanguages.length > 0 && (
-              <GlassCard className="mb-8 p-6" glow="#3B82F6">
+              <GlassCard className="mb-8 p-6" glow="#57cbff">
                 <p className="mb-4 font-mono text-xs uppercase tracking-widest text-white/40">
                   Most-used languages across public repos
                 </p>
@@ -195,7 +199,7 @@ function StatCard({
   label: string;
 }) {
   return (
-    <GlassCard className="flex flex-col items-center gap-2 p-5 text-center" glow="#7C3AED">
+    <GlassCard className="flex flex-col items-center gap-2 p-5 text-center" glow="#64ffda">
       <Icon className="h-4 w-4 text-primary" />
       <AnimatedCounter value={value} />
       <span className="font-body text-xs text-white/50">{label}</span>

@@ -18,8 +18,9 @@ import {
 import { projects, type Project } from "@/data/projects";
 import { projectStories, type ProjectStory } from "@/data/project-stories";
 import GlassCard from "@/components/ui/GlassCard";
+import HexMark from "@/components/layout/HexMark";
 
-const DEFAULT_ACCENT = "#7C3AED";
+const DEFAULT_ACCENT = "#64ffda";
 
 function isEmpty(s: ProjectStory) {
   return (
@@ -117,7 +118,10 @@ export default function ProjectStories() {
         </motion.div>
 
         {loading && (
-          <p className="text-center font-mono text-xs text-white/40">Loading stories…</p>
+          <div className="flex flex-col items-center gap-3">
+            <HexMark size={44} mode="pulse" />
+            <p className="text-center font-mono text-xs text-white/40">Loading stories…</p>
+          </div>
         )}
 
         {/* Project selector */}

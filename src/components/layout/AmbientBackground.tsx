@@ -18,20 +18,20 @@ import { useTheme } from "./ThemeProvider";
  */
 export default function AmbientBackground() {
   const { theme } = useTheme();
-  const fogFrom = theme === "light" ? "from-[#fcfcff]" : "from-base";
+  const fogFrom = theme === "light" ? "from-[#f6f9fc]" : "from-base";
 
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-base">
       {/* light theme only: crisp white with soft pastel washes + faint dot grid */}
       {theme === "light" && (
         <>
-          <div className="absolute inset-0 [background:radial-gradient(60%_50%_at_15%_0%,rgba(124,58,237,0.10),transparent_70%),radial-gradient(50%_45%_at_90%_35%,rgba(59,130,246,0.09),transparent_70%),radial-gradient(45%_40%_at_10%_85%,rgba(244,114,182,0.08),transparent_70%)]" />
+          <div className="absolute inset-0 [background:radial-gradient(60%_50%_at_15%_0%,rgba(100,255,218,0.10),transparent_70%),radial-gradient(50%_45%_at_90%_35%,rgba(87,203,255,0.09),transparent_70%),radial-gradient(45%_40%_at_10%_85%,rgba(244,114,182,0.08),transparent_70%)]" />
           <div className="absolute inset-0 opacity-[0.5] [background-image:radial-gradient(rgba(76,29,149,0.13)_1px,transparent_1px)] [background-size:26px_26px] [mask-image:linear-gradient(to_bottom,black,transparent_85%)]" />
         </>
       )}
 
       {/* moving gradient mesh */}
-      <div className={`absolute inset-0 animate-[spin_60s_linear_infinite] opacity-40 ${theme === "light" ? "hidden" : ""} [background:conic-gradient(from_0deg_at_50%_50%,#7C3AED22,transparent_25%,#3B82F622,transparent_50%,#7C3AED22,transparent_75%,#3B82F622)]`} />
+      <div className={`absolute inset-0 animate-[spin_60s_linear_infinite] opacity-40 ${theme === "light" ? "hidden" : ""} [background:conic-gradient(from_0deg_at_50%_50%,#64ffda22,transparent_25%,#57cbff22,transparent_50%,#64ffda22,transparent_75%,#57cbff22)]`} />
 
       {/* aurora bands */}
       <div className="absolute -top-1/4 left-1/4 h-[60vh] w-[60vw] animate-float rounded-full bg-primary/20 blur-[120px]" />
@@ -51,10 +51,10 @@ export default function AmbientBackground() {
             <feGaussianBlur stdDeviation="40" />
           </filter>
         </defs>
-        <circle cx="20%" cy="30%" r="120" fill="#7C3AED" filter="url(#blob-blur)">
+        <circle cx="20%" cy="30%" r="120" fill="#64ffda" filter="url(#blob-blur)">
           <animate attributeName="cy" values="30%;35%;30%" dur="14s" repeatCount="indefinite" />
         </circle>
-        <circle cx="80%" cy="70%" r="160" fill="#3B82F6" filter="url(#blob-blur)">
+        <circle cx="80%" cy="70%" r="160" fill="#57cbff" filter="url(#blob-blur)">
           <animate attributeName="cx" values="80%;75%;80%" dur="18s" repeatCount="indefinite" />
         </circle>
       </svg>

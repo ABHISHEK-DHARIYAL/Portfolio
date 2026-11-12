@@ -101,7 +101,7 @@ export default function ParticleField() {
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = `rgba(124,58,237,${0.12 * (1 - d / LINK_DIST)})`;
+            ctx.strokeStyle = `rgba(100,255,218,${0.12 * (1 - d / LINK_DIST)})`;
             ctx.lineWidth = 1;
             ctx.stroke();
           }
@@ -112,7 +112,7 @@ export default function ParticleField() {
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(59,130,246,${0.25 * (1 - d / LINK_DIST)})`;
+          ctx.strokeStyle = `rgba(87,203,255,${0.25 * (1 - d / LINK_DIST)})`;
           ctx.stroke();
         }
       }

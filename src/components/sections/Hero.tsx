@@ -108,11 +108,11 @@ export default function Hero() {
   const { theme } = useTheme();
   const dark = theme === "dark";
   const c = {
-    bg: dark ? "#050816" : "#fcfcff",
-    heading: dark ? "#ffffff" : "#0f0d1a",
-    role: dark ? "rgba(255,255,255,0.85)" : "rgba(20,18,31,0.85)",
-    typed: dark ? "rgba(255,255,255,0.8)" : "rgba(20,18,31,0.75)",
-    shadow: dark ? "0 2px 24px rgba(5,8,22,0.9)" : "none",
+    bg: dark ? "#0a192f" : "#f6f9fc",
+    heading: dark ? "#ccd6f6" : "#0a192f",
+    role: dark ? "#a8b2d1" : "rgba(10,25,47,0.85)",
+    typed: dark ? "#a8b2d1" : "rgba(10,25,47,0.75)",
+    shadow: dark ? "0 2px 24px rgba(10,25,47,0.9)" : "none",
   };
 
   return (

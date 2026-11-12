@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 export default function GlassCard({
   children,
   className,
-  glow = "#7C3AED",
+  glow = "#64ffda",
 }: {
   children: ReactNode;
   className?: string;
@@ -41,7 +41,7 @@ export default function GlassCard({
         className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{
           padding: 1,
-          background: `linear-gradient(120deg, ${glow}, transparent, #3B82F6)`,
+          background: `linear-gradient(120deg, ${glow}, transparent, #57cbff)`,
           WebkitMask:
             "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
           WebkitMaskComposite: "xor",

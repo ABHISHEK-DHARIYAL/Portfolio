@@ -17,8 +17,8 @@ type Filter = "All" | Category;
  * yellow / cyan labels stay readable on a white background.
  */
 const CATEGORY_META: Record<Category, { color: string; ink: string; Icon: LucideIcon }> = {
-  Languages: { color: "#7C3AED", ink: "#6D28D9", Icon: Code2 },
-  Frontend: { color: "#3B82F6", ink: "#1D4ED8", Icon: LayoutDashboard },
+  Languages: { color: "#64ffda", ink: "#0f766e", Icon: Code2 },
+  Frontend: { color: "#57cbff", ink: "#0369a1", Icon: LayoutDashboard },
   Backend: { color: "#22D3EE", ink: "#0E7490", Icon: Server },
   Databases: { color: "#F472B6", ink: "#BE185D", Icon: Database },
   Tools: { color: "#FACC15", ink: "#A16207", Icon: Wrench },
@@ -123,7 +123,7 @@ export default function Skills() {
   );
 
   const tabs: { id: Filter; count: number; color: string; ink: string; Icon: LucideIcon }[] = [
-    { id: "All", count: skills.length, color: "#7C3AED", ink: "#6D28D9", Icon: Layers },
+    { id: "All", count: skills.length, color: "#64ffda", ink: "#0f766e", Icon: Layers },
     ...skillCategories.map((cat) => ({
       id: cat as Filter,
       count: skills.filter((s) => s.category === cat).length,
