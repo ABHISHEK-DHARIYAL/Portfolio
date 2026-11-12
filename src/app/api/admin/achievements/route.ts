@@ -1,14 +1,22 @@
 import { NextResponse } from "next/server";
-import { updateAchievement, deleteAchievement } from "@/lib/firestore-achievements";
-import { achievementUpdateSchema } from "@/lib/achievement-schema";
+import { listAllAchievements, createAchievement } from "@/lib/firestore-achievements";
+import { achievementSchema } from "@/lib/achievement-schema";
 
 export const runtime = "nodejs";
 
-type RouteParams = { params: Promise<{ id: string }> };
+/** GET /api/admin/achievements — every achievement (visible or hidden), newest first. */
+export async function GET() {
+  try {
+    const achievements = await listAllAchievements();
+    return NextResponse.json({ achievements });
+  } catch (err) {
+    console.error("[admin/achievements] list failed:", err);
+    return NextResponse.json({ error: "Failed to load achievements." }, { status: 500 });
+  }
+}
 
-export async function PATCH(req: Request, { params }: RouteParams) {
-  const { id } = await params;
-
+/** POST /api/admin/achievements — create a new achievement. */
+export async function POST(req: Request) {
   let body: unknown;
   try {
     body = await req.json();
@@ -16,7 +24,7 @@ export async function PATCH(req: Request, { params }: RouteParams) {
     return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
   }
 
-  const parsed = achievementUpdateSchema.safeParse(body);
+  const parsed = achievementSchema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json(
       { error: "Please check the form for errors.", fieldErrors: parsed.error.flatten().fieldErrors },
@@ -25,21 +33,10 @@ export async function PATCH(req: Request, { params }: RouteParams) {
   }
 
   try {
-    await updateAchievement(id, parsed.data);
-    return NextResponse.json({ ok: true });
+    const id = await createAchievement(parsed.data);
+    return NextResponse.json({ ok: true, id }, { status: 201 });
   } catch (err) {
-    console.error(`[admin/achievements/${id}] update failed:`, err);
-    return NextResponse.json({ error: "Failed to update achievement." }, { status: 500 });
-  }
-}
-
-export async function DELETE(_req: Request, { params }: RouteParams) {
-  const { id } = await params;
-  try {
-    await deleteAchievement(id);
-    return NextResponse.json({ ok: true });
-  } catch (err) {
-    console.error(`[admin/achievements/${id}] delete failed:`, err);
-    return NextResponse.json({ error: "Failed to delete achievement." }, { status: 500 });
+    console.error("[admin/achievements] create failed:", err);
+    return NextResponse.json({ error: "Failed to add achievement." }, { status: 500 });
   }
 }
